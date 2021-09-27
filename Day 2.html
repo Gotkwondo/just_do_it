@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>웹사이트 이름</title>
+        <style>
+            h2{color:blue; background-color: grey;}
+        </style>
+        <link rel="stylesheet" href="./style1.css" />
+        <!--rel="stylesheet"속성으로 해당문서가 css파일임을 명시
+            href="./style1.css"속성으로 파일의 위치를 명시-->
+        <link rel="stylesheet" href="./static/ 2.css" />
+        <!--외부 스타일 시트를 불러와서 사용
+            용도, 페이지에 따라 css파일을 여러개로 분리하여 관리 용이-->
+    </head>
+    <body>
+        <h1 style="color: red; background-color: grey;">빨강이 좋아!</h1>
+        <!--html태그에 style을 작성하고 속성을 적용. 
+            일회성의 속성일 경우 곧바로 적용하기도 하지만 많이는 사용하지 않음-->
+        <h2>파랑이 좋아!</h2>
+        <!--head태그에 style태그를 생성후 속성을 적용시키는 방법-->
+        <h3>초록이 좋아!</h3>           <!--외부 스타일 시트를 연결하여 사용-->
+        <div class="type">TYPE</div>    <!--외부 스타일 시트를 연결하여 사용-->
+        <img src="./static/cyberpunk.jpg" alt="싸이버 펑크 사진"/>
+    </body>
+</html>
