@@ -2,6 +2,9 @@
 <head>
 <meta charset="utf-8"/>
 <title>4일차 패딩과 마진</title>
+<style>
+    .a{display:inline-block; background-color: yellow; padding:20px; margin:10px;}
+</style>
 </head>
 <body>
     <div style="background-color: #eeeee;">
@@ -15,8 +18,12 @@
         <div style="display: inline-block; margin:20px">네비게이션</div>
     </div>
     <div style="display: inline-block; padding-left: 10px; padding-right: 10px;
-                padding-top: 15px; padding-bottom: 15px;">한번에 패딩 지정하기</div>
-    <div style="display: inline-block; margin:3px 10px">상하, 좌우</div>
-    <div style="display: inline-block; margin:3px 10px 3px">상, 좌우, 하</div>
-    <div style="display: inline-block; margin:3px 10px 7px 5px">상, 우, 하, 좌</div>
+                padding-top: 15px; padding-bottom: 15px;">한번에 패딩 지정하기</div>    <!--하나씩 지정하려면 left, right, top, bottom을 사용하여 지정-->    
+    <div style="display: inline-block; margin:3px 10px">상하, 좌우</div>               <!--2개가 작성될 시 상하, 좌우로 지정된다-->
+    <div style="display: inline-block; margin:3px 10px 3px">상, 좌우, 하</div>         <!--3개가 작성될 시 상, 좌우, 하로 지정된다-->
+    <div style="display: inline-block; margin:3px 10px 7px 5px">상, 우, 하, 좌</div>   <!--4개는 각 시계방향으로 상, 우, 하, 좌로 지정된다-->
+    <div>
+        <div class="a">클래스 지정 적용</div>               <!--클래스와 아이디를 이용하여 속성을 불러올 수 있다-->
+        <div class="a">클래스와 아이디 둘다 적용 가능</div>
+    </div>
 </body>
