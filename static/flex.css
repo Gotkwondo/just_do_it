@@ -1,0 +1,58 @@
+.container{         /*모든 것을 감싸고 있는 박스*/
+    width: 500px;
+    height: 350px;
+    border: 2px solid blue;
+    padding: 10px;
+    display: flex;
+    background-color: rgb(174, 234, 236);
+}
+.column1{           /*좌측에 3개의 박스를 감싸고있는 박스*/
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.row1{
+    flex: 0.3;
+    background-color: white;
+}
+.row2{
+    flex: 1;
+    background-color: white;
+}
+.row3{
+    flex: 1;
+    background-color: white;
+}
+.column2{           /*우측에 3개의 박스를 감싸고있는 박스*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.row4{
+    flex: 0.3;
+    background-color: white;
+}
+.column3{           /*display: flex;를 이용하여 상자의 배치를 조절할 수 있다*/
+    flex: 2;
+    display: flex;
+}
+.row5{
+    flex: 1;
+    display: flex;
+    /*flex상자에 display: flex; align-items: center; justify-content: center;를 적어주면
+    수직, 수평 가운데로 정렬이 된다. flex각자의 정렬도 가능하므로 상황에 맞게 사용하자*/
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.row6{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.box{
+    border: 5px solid rgb(174, 234, 236);
+}
