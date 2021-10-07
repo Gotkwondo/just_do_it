@@ -1,0 +1,55 @@
+.container{
+    width: 500px;
+    height: 500px;
+    border: black;
+    padding: 10px;
+    display: flex;
+    background-color:skyblue;
+    flex-direction: column;
+}
+.item1{
+    flex-basis: 100px; /*%, em, rem, px등 단위 설정 가능*/
+}   /*flex 레이아웃에서는 아이템의 너비나 높이를 width, height를 
+    이용해 설정하는 것이 아니라 flex-basis는 너비혹은 높이를 설정함*/
+.item2{
+    flex-grow:1;
+}/*아이템이 얼마나 커질 수 있는지를 비율로 정하는 속성0~1사이값*/
+.item3{
+    flex-shrink: 0;
+}   /*아이템이 얼마나 작아질 수 있는지를 비율로 정하는 속성
+    0일때는 절대 작아지지않고 0보다 클때 다른아이템과 shrink비율만큼 늘어남*/
+.item4{
+    flex:1;         /*grow:1, shrink:1, basis:1*/
+    flex:1 1 auto;  /*grow:1, shrink:1, basis:auto*/
+    flex:auto;      /*flex:1 1 auto랑 같음*/
+    flex:none;      /*flex: 0 0 auto랑 같음*/
+}
+.item5{
+    flex-direction: column;/*row는 가로 레이아웃 column은 세로 레이아웃*/
+}
+.item6{
+    flex-wrap: wrap;
+    /*wrap은 컨테이너 크기를 넘길경우 다음줄로 표시
+    nowrap은 컨테이너 크기를 넘어도 다음줄로 표시 X
+    wrap-reverse는 wrap의 역순*/
+}
+.item7{
+    align-items:center;
+    /*center은 수직축의 가운데 정렬
+    flex-start은 수직축의 시작점에 정렬
+    flex-end은 수직축의 끝에 정렬
+    strtch는 수직축 방향으로 쭉 늘어나게 정렬
+    baseline은 텍스트 베이스라인 기준으로 정렬*/
+}
+.item8{
+    justify-content: center;/*수평으로 정렬*/
+    /*center은 가운데
+    flex-start는 시작점에 정렬
+    flex-end는 끝에 정렬
+    space-between은 사이세 간격을 만들어 정렬
+    space-around는 둘레에 간격을 만들어 정렬
+    space-evenly는 사이와 양 끝에 간격을 만들어 정렬*/
+}
+.box{
+    border:2px solid black;
+}
