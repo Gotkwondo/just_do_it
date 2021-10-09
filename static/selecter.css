@@ -1,0 +1,44 @@
+.menu{
+    border: 1px solid grey;
+}
+/*여러가지 조건을 가진 선택자 AND OR조건*/
+div.menu{/*div태그에 menu클래스에 적용*/
+    background-color: beige;
+}/*AND조건은 띄어쓰기 없이 붙여서 작성한다
+ div선택자와 .menu(아이디도 사용가능)선택자가 모두 만족 해야 속성이 적용된다
+ .menu#name 으로 사용하면 menu클래스와 name아이디 동시에 가진 요소에 적용*/
+#name, .menu2{
+     background-color: hotpink;
+ }/*OR조건은 , 을 사용하여 #name 또는 .menu2를 가진 요소에 적용한다*/
+
+ /*상하위 요소에 따라 결정되는 선택자*/
+.menu3 a{
+     background-color: blueviolet;
+ }/*상하위 요소에 따른 선택자이다
+    위는 menu클래스 요소의 하위 요소 중 a 태그 요소에 적용한다
+    좌에서 우로 순차적으로 상하로 나뉘어 조건이 부여된다.*/
+.menu3-item > a{
+    color: red;
+}
+.menu4 > a{
+    background-color: red;
+}/*>를 사용할 경우 순수히 부모-자식 관계일 경우만 적용된다
+    위에서는 menu3-item가 부모 a가 자식으로 되있으므로 적용
+    menu4와 a는 부모 자식이 아니므로 적용 안됨*/
+
+/*속성 선택자 hover, active, focus*/
+button:hover{
+    background-color: blue;
+    color: white;
+}
+button:active{
+    background-color:red;
+    color: white;
+}
+input:focus{
+    background-color: yellow;
+}
+/*hover은 마우스를 해당 요소로 올렸을때 상태를 의미하므로 그때 속성이 적용됨
+active는 마우스로 해당 요소를 클릭했을 때 속성이 적용됨(클릭상태 유지)
+focus는 해당 요소가 활성화되었을 때(입력창에 입력할 수 있도록 깜빡 거리는 상태
+에서 속성이 적용됨*/
