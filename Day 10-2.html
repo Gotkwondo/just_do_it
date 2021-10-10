@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        *{
+            box-sizing: border-box;
+        }/*엘리먼트 사이즈 측정시 박스를 포함하여 측정할때 사용하는것이 box-sizing*/
+        .container{
+            width: 540px;
+            border: 1px solid gray;
+            margin: auto;
+        }
+        header{
+            border-bottom:1px solid gray;
+        }
+        nav{
+            float: left;
+            width: 120px;
+            border-right: 1px solid gray;
+        }
+        article{
+            float: left;
+            width: 300px;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            margin-left: -1px;
+            word-wrap:break-word; /*width가 정해저 있어서 적용이 안되는 것 처럼 보인다*/
+        }
+        aside{
+            float: left;
+            width: 120px;
+            border-left: 1px solid gray;
+            margin-left: -1px;
+        }
+        footer{
+            clear: both;/*clear속성은 float의 방향에 대한 값을 취소시켜주므로
+                           float의 영향을 받지 않게끔 새로운 줄에서 시작된다*/
+            border-top: 1px solid gray;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                CSS
+            </h1>
+        </header>
+        <nav>
+            <ul>
+                <li>position</li>
+                <li>float</li>
+                <li>flex</li>
+            </ul>
+        </nav>
+        <article>
+            <h2>float</h2>
+            flex에 비해 오래된 기술이지만 신기술이 구버전의 브라우저들에서 적용이 안되는 이유, 크로스브라우징에 대해 문제가 있기에 float를 사용하여 구버전의 브라우저에서도 구동이 되게끔 사용이 되기때문에 알아 보았다. 현직자 분들은 어느정도 float와 flex를 섞어가며 사용한다고 한다.
+        </article>
+        <aside>
+            ad
+        </aside>
+        <footer>
+            copyleft
+        </footer>
+    </div>
+</body>
+</html>
