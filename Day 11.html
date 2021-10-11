@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /*부모 자식 간의 마진 겹침 현상*/
+        #parent{
+            /* border: 1px solid tomato; */
+            margin-top: 100px;
+        }
+        #child{
+            background-color: powderblue;
+            margin-top: 50px;
+        }/*부모 엘리먼트가 시각적인 요소가 없는투명한 상태일때 
+        부모 엘리먼트의 마진 값과 자식 엘리먼트 마진값 중에 큰 쪽의 마진값이 
+        자식 엘리먼트의 마진 값으로 사용된다(자식 엘리먼트의 위치로 사용된다).*/
+
+        /*태그 간의 마진 겹침*/
+        #empty{
+            margin-top: 50px;
+            margin-bottom: 100px;
+            border: 1px solid gray;
+        }/*시각적인 요소가 없는 상태일때 마진 중 가장 큰 마진이 그 엘리먼트의
+        마진값이 된다.*/
+        #normal{
+            background-color: powderblue;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child">
+            Hello World
+        </div>
+    </div>
+    <div id="empty"></div>
+    <div id="normal">normal</div>
+</body>
+</html>
