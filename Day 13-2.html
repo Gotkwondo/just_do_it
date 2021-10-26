@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;    /*컨테이너에서의 위치를 지정*/
+        }
+        .container{
+            display:flex;
+            flex-direction: column;
+        }
+        header{
+            border-bottom: 1px solid gray;
+            
+        }
+        footer{
+            border-top: 1px solid gray;
+            text-align: center;
+        }
+        .content{
+            display: flex;
+        }
+        .content nav{
+            border-right:1px solid gray;
+        }
+        .content aside{
+            border-left: 1px solid gray;
+            justify-content: center;
+        }
+        nav, aside{
+            flex-basis: 150px;
+            flex-shrink: 0;
+        }
+        main{
+            padding: 10px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>생활코딩</h1>
+        </header>
+        <section class="content">
+            <nav>
+                <ul>
+                    <li>html</li>
+                    <li>css</li>
+                    <li>javascript</li>
+                </ul>
+            </nav>
+            <main>
+                생활코딩은 일반인을 위한 코딩 수업입니다.
+            </main>
+            <aside>
+                aside는 부가적인 요소에서 쓰인다.
+            </aside>
+        </section>
+        <footer>
+            <a href="https://opentutorials.org/course/1">홈페이지</a>
+        </footer>
+    </div>
+</body>
+</html>
