@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>성배레이아웃 연습</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .container{
+            display:flex;
+            flex-direction: column;
+        }
+        .content{
+            display:flex;
+        }
+        header{
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+        section{
+            border-bottom: 1px solid black;
+        }
+        .content nav, main{
+            text-align: left;
+            border-right: 1px solid black;
+        }
+        .content aside{
+            justify-content: center;
+        }
+        .content nav, aside{
+            flex-basis: 100px;
+        }
+        main{
+            flex-grow: 1;
+        }
+        ul{
+            padding-inline-start: 20px;
+            padding-inline-end: 20px;
+        }
+        footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>나홀로 연습</h2>
+        </header>
+        <section class="content">
+            <nav>
+                <ul>
+                    <div>
+                        <a href="">html</a>
+                    </div>
+                    <div>
+                        <a href="">css</a>
+                    </div>
+                    <div>
+                        <a href="">javascript</a>
+                    </div>
+                </ul>
+            </nav>
+            <main>
+                처음 연습하는 성배레이아웃이다. 이후에도 계속 연습하며 요소를 추가할 예정이다.
+            </main>
+            <aside>
+                AD
+            </aside>
+        </section>
+        <footer>
+            <a href="https://opentutorials.org/course/1">생활코딩 홈페이지</a>
+        </footer>
+    </div>
+</body>
+</html>

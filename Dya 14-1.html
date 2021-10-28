@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @media(max-width:600px){
+            /*@media()에서 괄호에 들어오는 것은 조건문이 들어온다*/
+            /*min-는 지정값 이상, max-는 지정값 이하*/
+            body{
+                background-color: red;
+            }
+        }
+        @media(max-width:500px){
+            body{
+                background-color: green;
+            }
+        }
+        @media(min-width:601px){
+            body{
+                background-color:yellow;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>~500 : red</li>
+        <li>501~600 : green</li>
+        <li>601~ : yellow</li>
+    </ul>
+</body>
+</html>
