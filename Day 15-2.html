@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            width: 540px;
+            border: 1px solid grey;
+            margin: auto;
+        }
+        header{
+            border-bottom: 1px solid grey;
+        }
+        nav{
+            float:left;
+            width: 120px;
+            border-right: 1px solid grey;
+        }
+        article{
+            float: left;
+            width: 300px;
+            border-left: 1px solid grey;
+            border-right: 1px solid grey;
+            margin-left: -1px; /*마진을 겹치게 하여 줄 겹침해줌*/
+        }
+        aside{
+            float: left;
+            width: 120px;
+            border-left: 1px solid grey;
+            margin-left: -1px;
+        }
+        footer{
+            clear: both;
+            border-top: 1px solid grey;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                CSS
+            </h1>
+        </header>
+        <nav>
+            <ul>
+                <li>position</li>
+                <li>float</li>
+                <li>flex</li>
+            </ul>
+        </nav>
+        <article>
+            <h2>float</h2>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, amet reiciendis natus fugiat velit deserunt facilis at eius maxime debitis. Laboriosam delectus fuga dignissimos voluptas dolores laudantium accusamus id blanditiis, excepturi minima ex voluptates et consequuntur sunt repudiandae incidunt esse repellendus quasi numquam accusantium quidem asperiores mollitia aperiam voluptatem. Ipsum?
+        </article>
+        <aside>
+            ad
+        </aside>
+        <footer>
+            copyright
+        </footer>
+    </div>
+</body>
+</html>
