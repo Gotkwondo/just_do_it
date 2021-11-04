@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        img, h1{
+            transition: all 2s;
+        }   /*transition은 장면 전환시 속도조절을 설정할때 사용*/
+        img:hover{                              /*hover를 사용하여 마우스포인트가 올라갈시 적용*/
+            -webkit-filter: grayscale(100%);    /*webkit는 크롬,사파리의 밴드프로픽스*/
+            -o-filter: grayscale(100%);         /*o는 오라클의 밴드프로픽스*/
+            filter: grayscale(100%);
+        }
+        h1:hover{
+            -webkit-filter: blur(2px);
+            -o-filter: blur(2px);
+            filter: blur(2px);
+        }/*각종 필터 효과는 하단 링크에서 확인*/
+    </style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <img src="https://i.pinimg.com/564x/36/fb/dc/36fbdc080eae1309e018d097603920f7.jpg" alt="">
+</body>
+</html>
