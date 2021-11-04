@@ -14,7 +14,7 @@
             @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
             /*임포트시에 스타일에 상단부에 적어줘야 적용이 된다. 아마 우선순위 때문인거 같다.*/
             .nanum-myeongjo{font-family: 'Nanum Pen Script', cursive;
-                            font-weight: 700;}/*font-weight를 통해 두깨 지정*/
+                            font-weight: 500;}/*font-weight를 통해 두깨 지정*/
             .black-han-sans{font-family: 'Black Han Sans', sans-serif;}
             @font-face{
                 font-family: "BHS";
@@ -25,7 +25,10 @@
                 font-family: "test";
                 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
             }           /*구글폰트 이외의 웹폰트 적용 시 woff확장자 사용 추천, 다운받아 상대경로로 지정하기 보다는 url을 이용하여 프로젝트 가볍게 만듬*/
-            h2{font-family: "test"; }/*font-style에서 기울임 정도 설정 가능*/
+            h2{
+                font-family: "test";
+                font-style:italic;
+            }   /*font-style에서 기울임 정도 설정 가능*/
             p.a{width:5em;border:1px solid black;word-wrap:break-word}
             p.en{column-count: 2; column-gap: 80px; 
                 column-rule: 3px dashed green;}
