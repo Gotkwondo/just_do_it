@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        a {
+            font-size: 3rem;
+            display: inline-block;
+            /* transition-property: all;
+            transform와 같은 효과에 적용가능
+            모든 효과에 의해 변화가 일어났을때 모든 효과에 전환이 일어난다.
+            transition-duration: 0.5s;
+            장면전환 효과가 일어나는 시간 */
+            transition: font-size 1s, transform 0.5s;
+        }
+
+        a:active {
+            transform: translate(20px, 20px);
+            font-size: 2rem;
+        }
+
+        /*transform은 해당 엘리먼트가block레벨 엘리먼트
+            이거나 inline-block엘리먼트에서만 동작한다.*/
+    </style>
+</head>
+
+<body>
+    <a href="#">Click</a>
+    <!--#을 링크에 걸어두면 어디로도 이동안함-->
+</body>
+
+</html>
