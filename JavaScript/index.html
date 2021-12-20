@@ -8,17 +8,32 @@
 
 <body>
     <h1><a href="index.html">WEB</a></h1>
+    <input type="button" value="night" onclick="
+     document.querySelector('body').style.backgroundColor= 'black';
+     document.querySelector('body').style.color= 'white';
+    ">
+    <input type="button" value="day" onclick="
+     document.querySelector('body').style.backgroundColor= 'white';
+     document.querySelector('body').style.color= 'black';
+    ">
+    <input id="night_day" type="button" value="night" onclick="
+     if(document.querySelector('#night_day').value === 'night'){
+        document.querySelector('body').style.backgroundColor= 'black';
+        document.querySelector('body').style.color= 'white';
+        document.querySelector('#night_day').value='day';
+     }
+     else{
+        document.querySelector('body').style.backgroundColor= 'white';
+        document.querySelector('body').style.color= 'black';
+        document.querySelector('#night_day').value='night';
+     }
+     ">
     <ol>
         <li><a href="1.html">HTML</a></li>
         <li><a href="2.html">CSS</a></li>
         <li><a href="3.html">JavaScript</a></li>
     </ol>
     <h2>WEB</h2>
-    <p><iframe width="560" height="315" src="https://www.youtube.com/embed/LCDVzpPl-Yg" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-    </p>
     <p>월드 와이드 웹(World Wide Web, WWW, W3)은 인터넷에 연결된 컴퓨터를 통해 사람들이 정보를 공유할 수 있는 전 세계적인 정보 공간을 말한다. 간단히 웹(the Web)이라 부르는 경우가
         많다. 이
         용어는 인터넷과 동의어로 쓰이는 경우가 많으나 엄격히 말해 서로 다른 개념이다. 웹은 전자 메일과 같이 인터넷 상에서 동작하는 하나의 서비스일 뿐이다. 그러나 1993년 이래로 웹은 인터넷 구조의
@@ -53,3 +68,19 @@
 </html>
 
 </html>
+<!--JavaScript의 CSS 태그의 선택자는 querySelector('selectors')이다.-->
+<!--(CSS선택자를 이용하여 요소를 찾는것) >>>>querySelector('selectors')-->
+<!--위 코드에서는 body태그의 style의 element를 바꿔줄 예정이므로-->
+<!--document.querySelector('body').style.backgroundColor= 'black';-->
+<!--이와 같은 코드가 작성이 된다. 태그 선택자로 태그를 선택한 후-->
+<!--그 태그의 elements를 이어 적은 뒤 적용할 값을 적어주면 된다.-->
+<!--국지적으로 태그 선택을 할 경우에는 ID나 Class를 이용하여 선정하는데-->
+<!--selector자리에 #ID, .Class 같이 적어주면 적용 가능하다-->
+<!--또한 querySelectorAll은 사용 방법은 동일하며 선택자를 선택하여-->
+<!--배열과 비슷한 객체인 nodeList를 반환하는데 반환객체가 for문 또는 forEach문을 사용-->
+<!--querySelectorAll("#id,.class")와 같이 사용되며 상위ID를 갖은 Class를 가져오려면-->
+<!--querySelectorAll("#id .class")로 띄어쓰기를 작성해서 가져올 수 있다.-->
+
+<!--기존의 밤낮 테마 변경 버튼은 따로 있었지만 조건문을 통해 하나로 통합되게 만들었다-->
+<!--해당 버튼에 아이디를 지정한 후 버튼의 값을 불러와 비교하여 IF문을 이용해서-->
+<!--스크립을 작성한다. 또한 바뀌고 나서 버튼의 값 또한 다른 값으로 바꾼다.-->
