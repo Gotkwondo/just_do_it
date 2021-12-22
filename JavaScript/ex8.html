@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <h1>Loop & Array</h1>
+    <script>
+        var coworkers = ['egoing', 'leezche', 'duru', 'taeho', 'juhyeon', 'bebe'];
+    </script>
+    <h2>Co workers</h2>
+    <ul>
+        <script>
+            var i = 0;
+            while (i < coworkers.length) {
+                document.write('<li><a href="https://www.google.com/search?q=' + coworkers[i] + '">' + coworkers[i] + '</li>');
+                i = i + 1;
+            }
+        </script>
+    </ul>
+</body>
+
+</html>
+<!--while문의 조건에 배열의 인덱스의 수 만큼 적고 싶다면-->
+<!--위 coworkers.length처럼 사용해 주면 된다.-->
+<!--또한 a태그를 동시에 사용해주면서 생성된 인덱스에 링크를 걸 수 있다.-->
+<!--a태그 사용할 때 링크를 작성 후 ' + + '를 적어준 뒤 사이에 배열 인덱스 값을 적어주면-->
+<!--그에 해당하는 값을 넣을 수 있다.-->
