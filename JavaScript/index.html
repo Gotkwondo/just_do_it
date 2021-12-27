@@ -4,35 +4,12 @@
 <head>
     <title>WEB1 - html</title>
     <meta charset="utf-8">
+    <script src="colors.js"></script>
 </head>
 
 <body>
     <h1><a href="index.html">WEB</a></h1>
-    <input id="night_day" type="button" value="night" onclick="
-    var target = document.querySelector('body');
-     if(this.value === 'night'){
-        target.style.backgroundColor= 'black';
-        target.style.color= 'white';
-        this.value='day';
-        var alist = document.querySelectorAll('a');
-        var i=0;
-        while(i<alist.length){
-            alist[i].style.color='powderblue';
-            i=i+1;
-        }
-     }
-     else{
-        target.style.backgroundColor= 'white';
-        target.style.color= 'black';
-        this.value='night';
-        var alist = document.querySelectorAll('a');
-        var i=0;
-        while(i<alist.length){
-            alist[i].style.color='blue';
-            i=i+1;
-        }
-     }
-     ">
+    <input id="night_day" type="button" value="night" onclick="Handler(this);">
     <ol>
         <li><a href="1.html">HTML</a></li>
         <li><a href="2.html">CSS</a></li>
@@ -98,3 +75,31 @@
 
 <!--querySelectAll을 이용하여 a태그의 전부를 alist라는 배열로 지정해서-->
 <!--반복문을 통해 야간, 주간 모드에서의 a태그의 색상을 반복해서 지정했다.-->
+
+<!--head에 script태그를 추가하여 Handler라는 함수를 생성하여 night/day 버튼의 동작을-->
+<!--하는 코드를 함수화 하였다. 여기서 기존에 this를 사용하여 해당하는 객체의 값을 사용했지만-->
+<!--함수로 묶어주어서 self라는 매개변수를 사용하여 this를 적용시켜 동작되게 함-->
+<!--함수로 전달하는 값을 Argument라고 하고 Argument를 받아함수 안으로 매개하는 것을 Parameter라고 한다-->\
+<!--return은 매개변수가 들어가므로써 나온 결과를 출력해줌-->
+
+<!--객체 생성방식 var 객체명 = {"분류명" : "정보", "분류명" : "정보"}-->
+<!--객체 불러오기 - 객체명.분류명   객체에 추가 - 객체명.추가분류명="정보"
+    객체에 추가 - []를 사용하면 문자열입력으로 띄어쓰기 가능
+    for(var key in 객체명)을 이용하여 객체의 인덱스에 있는 값들을 전부 가져올 수 있다.-->
+
+<!--script코드를 .js파일로 -->
+<!--로드 시 웹서버에 접속이 많아져 안좋을 수 지만 캐시로 인해 다음에 접속 할 때 이미 다운로드된 파일로 인해
+    서버입장에서는 다운로드를 다시 안해도 되니 금전적, 시간적으로 이득을 봐서 훨신 효율적이다.-->
+
+<!--Library : 만들고자 하는 프로그램의 부품들이 정리되어있어 가저 올 수 있는 소프트웨어
+    Framework : 만들고자 하는 프로그램의 형태에 따라서 수정을 통해 사용가능한 반제품 형태의 프로그램-->
+
+<!--태그를삭제, 자식태그 추가 = document객체 조사, DOM객체 조사-->
+<!--웹브라우저 자체를 제어 = window객체 조사-->
+<!--웹페이지를 리로드 하지 않고 정보 변경 = ajax-->
+<!--웹페이지가 리로드 되어도 현제상태 유지 = cookie-->
+<!--인터넷이 끊켜도 동작하는 웹 = offline web application-->
+<!--화상통신 웹앱을 만들려면 = webRTC-->
+<!--사용자의 음성을 인식 음성으로 정보전달 = speech-->
+<!--3차원 그래픽으로 게임같은 것을 만들고 싶다 = webGL-->
+<!--가상현실 = webVR-->

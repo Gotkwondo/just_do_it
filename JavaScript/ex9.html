@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <h1>Funtion</h1>
+    <h2>Basic</h2>
+    <ul>
+        <script>
+            function two() {
+                document.write('<li>2-1</li>');
+                document.write('<li>2-2</li>');
+            }
+            document.write('<li>1</li>');
+            two();
+            document.write('<li>3</li>');
+            two();
+        </script>
+    </ul>
+    <h2>Parameter 매개변수 & Argument 인자</h2>
+    <script>
+        function onePlusone() {
+            document.write(1 + 1 + '<br>');
+        }
+        onePlusone();
+
+        function sum(left, right) {
+            document.write(left + right + '<br>');
+        }
+        function sumColorRed(left, right) {
+            document.write('<div style="color:red">' + left + right + '</div>');
+        }
+        sum(2, 3);   //  5
+        sumColorRed(5, 6);
+        sum(3, 4);   //  7
+    </script>
+    <h2>Return</h2>
+    <script>
+        function sum2(left, right) {
+            return left + right;
+        }
+        document.write(sum2(2, 4) + '<br>');
+        document.write('<div style="color:red">' + sum2(2, 4) + '</div>');
+        document.write('<div style="font-size:3rem">' + sum2(2, 4) + '</div>');
+    </script>
+</body>
+
+</html>
+<!--함수로 전달하는 값을 Argument라고 하고 Argument를 받아함수 안으로 매개하는 것을 Parameter라고 한다-->\
+<!--return은 매개변수가 들어가므로써 나온 결과를 출력해줌-->
