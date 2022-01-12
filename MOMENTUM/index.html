@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Momentum</title>
-    <style></style>
 </head>
 
 <body>
-    <div class="hello">
-        <h1 class="niceJob">Grab Me!</h1>
-    </div>
-
+    <form id="login-form" class="hidden">
+        <input required maxlength="15" type="text" placeholder="What is your name?" />
+        <button>Log In</button>
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
+    <a href="https://naver.com">Go to Naver!</a>
     <script src="app.js"></script>
-
 </body>
 
 </html>
 
 <!--css 파일을 불러오려면 head에 link 태그를 이용-->
+<!--form안에서 엔터를 누르거나 form안의 버튼을 누르고 input에 값이 없다면 자동으로 submit되고 브라우저는 새로고침 됨-->

@@ -1,10 +1,3 @@
-body{
-    background-color: beige;
-}
-h1{
-    color:blue;
-    transition: 1s;
-}
-.active{
-    color:tomato;
+.hidden{
+    display: none;
 }

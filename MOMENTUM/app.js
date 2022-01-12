@@ -1,66 +1,50 @@
-// const title = document.getElementById("title");
+// const loginForm = document.getElementById("login-form");
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+// const loginButton = loginForm.querySelector("button");
+const link = document.querySelector("a");
+const greeting = document.querySelector("#greeting");
 
-// title.innerText = "Got You!";
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
 
-// console.log(title.id);
-// console.log(title.className);
-//getElementsByTagName는 태그명에 따라 element를 가져올 수 있다.
-//querySelector는 element를 CSS방식으로 첫번째 것만 리턴
-//css방식으로 검색 시 '.' '#'와 같은 형식을 표시해 줘야지 검색 가능
-// const title = document.getElementsByTagName("h1");
+loginForm.addEventListener("submit", onLoginSubmit);
+// loginButton.addEventListener("click", onLoginBtnClick);
 
-// console.log(title);
+function onLoginSubmit(event) {
+    event.preventDefault(); //브라우저의 기본동작(새로고침)을 막음
+    loginForm.classList.add(HIDDEN_CLASSNAME);
+    const username = loginInput.value;
+    localStorage.setItem(USERNAME_KEY, username);
+    paintGreetings(username);
+}
 
-const h1 = document.querySelector(".hello:first-child h1");
+function paintGreetings(username) {
+    greeting.innerText = `Hello ${username} ! !`;
+    greeting.classList.remove(HIDDEN_CLASSNAME);
+}
 
-console.log(h1);
+link.addEventListener("click", handleLinckClick);
 
-function handleh1Click() {
-    h1.classList.toggle("active");    //toggle은 classList에 active가 있으면 active를 제거하고 없으면 추가한다.
-    // const clickedClass = "active";              //classList는 class들의 목록으로 작업하게 도와줌
-    // if (h1.classList.contains(clickedClass)) {  //cotains 명시한 요소가 있는지 확인
-    //     h1.classList.remove(clickedClass);
-    // } else {
-    //     h1.classList.add(clickedClass);
-    // }
+function handleLinckClick(event) {
+    event.preventDefault();
+    console.dir(event);
+}
 
+const savedUsername = localStorage.getItem(USERNAME_KEY);
 
-
-    // const currentColor = h1.style.color;
-    // let newColor;
-    // if (currentColor === "blue") {
-    //     newColor = "tomato";
-    // } else {
-    //     newColor = "blue";
-    // }
-    // h1.style.color = newColor;
+if (savedUsername === null) { //show the form
+    loginForm.classList.remove(HIDDEN_CLASSNAME);
+    loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+    //show the h1 tag
+    paintGreetings(savedUsername);
 }
 
 
-// function handleMouseEnter() {
-//     h1.innerText = "Mouse is here"
-// }
-// function handleMouseLeave() {
-//     h1.innerText = "Mouse is gone"
-// }
-// function handleWindowResize() {
-//     document.body.style.backgroundColor = "tomato";
-// }
-// function handleWindowCopy() {
-//     alert("Copier!");
-// }
-// function handleWindowOffline() {
-//     alert("SOS no WIFI");
-// }
-// function handleWindowOnline() {
-//     alert("Internet is Online!")
-// }
 
-h1.onclick = handleh1Click;
-// h1.addEventListener("mouseenter", handleMouseEnter);
-// h1.addEventListener("mouseleave", handleMouseLeave);
 
-// window.addEventListener("resize", handleWindowResize);
-// window.addEventListener("copy", handleWindowCopy);
-// window.addEventListener("offline", handleWindowOffline);
-// window.addEventListener("online", handleWindowOnline);
+
+
+
+//localStorage API를 이용하여 웹에 정보를 저장(setItem('key', value)),제거(removeItem(key)), 불러오기(getItem(key)), 항목 전체제거(clear())을 할 수 있다
