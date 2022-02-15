@@ -67,11 +67,13 @@ const dogPair = [
   [`name`, `tan`],
   [`color`, `black`],
 ];
-function getName(dogPair) {
-  return dogPair.find(attribute => {
+function getName(dog) {
+  return dog.find(attribute => {
+    console.log(attribute);
     return attribute[0] === `name`;
   })[1]
 }
+
 console.log(getName(dogPair));
 
 
@@ -87,13 +89,13 @@ console.log(displayShipping(sections1))
 //숫자와 비교하는 과정을 거친 코드
 const sections2 = [`contact`, `shipping`];
 function displayShipping2(sections2) {
-  return sections2.indexOf(`shipping`) > -1;
+  return sections2.indexOf(`contact`) > -1;
 }
 console.log(displayShipping2(sections2));
 //includes를 사용한 코드
 const sections3 = [`contact`, `shipping`];
 function displayShipping3(sections3) {
-  return sections3.includes(`shipping`);
+  return sections3.includes(`contact`);
 }
 console.log(displayShipping3(sections3));
 

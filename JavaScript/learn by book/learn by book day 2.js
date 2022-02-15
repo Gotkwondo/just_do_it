@@ -22,14 +22,16 @@ const reward = {
 };
 function addFreeGift(cart) {
   if (cart.length > 2) {
-    //cart.push(reward);
-    //return cart;
+    // cart.push(reward);
+    // return cart;
     //push()를 사용하여 배열에 간섭한다면 함수를 이동할 경우 에러가 발생.
-    return [...cart, reward]; //펼침연산자를 통해 안정적으로 작성 가능
+    return [reward, ...cart, reward, reward]; //펼침연산자를 통해 안정적으로 작성 가능
     //기존의 배열을 재사용하여 기존 배열을 변경하지 않아도 됨.
   }
   return cart;
 }
+console.log(addFreeGift(cart))
+
 function summarizeCart(cart) {
   const cartWithReward = addFreeGift(cart);
   const discountable = cart.filter(item => item.discount);
@@ -157,6 +159,12 @@ console.log([...staff].sort(sortByName));
 // }
 
 //tip 11 Object.assign()으로 조작 없이 객체를 생성하라
+const color1 = [`#d11111`, `#d12345`, `#00000`];
+const color2 = {
+  1: `#d11111`,
+  2: `#d12345`,
+  3: `#00000`,
+};
 const defaults = {
   author: ``,
   title: ``,
@@ -206,9 +214,9 @@ console.log(updated);
 //변경하면 원본 객체와 복사한 객체 모두 변경된다.
 //이 경우, 중첩된 객체도 복사해주면 된다.
 // const employee2 = Object.assign(
-//1   {},
-//2  defaultEmployee,
-//3   {
+//   {},
+//  defaultEmployee,
+//   {
 //     name: Object.assign({}, defaultEmployee.name),
 //   },
 // ); 이런 형식으로....
