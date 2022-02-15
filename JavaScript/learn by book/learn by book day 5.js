@@ -255,4 +255,4 @@ function getImage(userConfig) {
 
   // const images = userConfig.images;
   // return images && images.length && images[0].indexOf(`gif`) < 0 ? images[0] : `default.png`;
-  //위는 이미지 확인을 위한 코드이다.
+  //위는 이미지 확인을 위한 코드이다. dd
