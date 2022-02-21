@@ -119,6 +119,11 @@ function getUniqueColors(dogs) {
   }
   return [...unique];
 }
+
+//map()과 Set()를 동시에 사용해 보자 (이건 내 개인적인 궁금증)
+const dogsColor = new Set(dogs.map(dogs => dogs[`색상`]));
+console.log(dogsColor)
+
 //매개변수 dogs를 순회하기에 위에 작성된 코드보다 효율적이게된 코드라 볼 수 있다.
 //또한 위의 함수에서는 for문을 사용했지만, reduce() 메서드를 이용하여 더 간추려보자.
 function getUniqueColors2(dogs) {
