@@ -98,6 +98,7 @@ function getAppliedFilters3(filters) {
   const applied = [...filters].map(([key, value]) => {
     return `${key}:${value}`;
   });
+  console.log(applied);
   return `선택한 조건은 ${applied.join(`, `)} 입니다.`;
 }
 console.log(getAppliedFilters3(filters2));

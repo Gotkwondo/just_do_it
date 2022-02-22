@@ -112,5 +112,5 @@ const formattedPrices3 = prices3.map(price => parseFloat(price));
 
 //하지만 for문처럼 false값을 제거해야 하는 경우는 어떻게 해야하나.... 아래의 코드를 보자
 const prices4 = [`1.0`, `흥정가능`, `2.15`];
-const formattedPrices4 = prices.map(price => parseFloat(price)).filter(price => price);
+const formattedPrices4 = prices4.map(price => parseFloat(price)).filter(price => price);
 //기존의 코드에서 filter()를 이용해서 false값을 제거하여 배열로 반환한 코드이다.
