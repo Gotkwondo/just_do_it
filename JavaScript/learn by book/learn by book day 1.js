@@ -55,7 +55,7 @@ for (let i = 0; i < stats.length; i++){
     total[stat] = game1[stat] + game2[stat];
   }
 }
-console.log(stats)
+console.log(total)
 
 const dog = {
   name: `don`,
