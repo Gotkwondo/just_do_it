@@ -64,7 +64,6 @@ console.log(validateCharacterCount2(10, ...tags2));
 //2️⃣나머지 인수를 사용하면 길게 나열된 인수를 확인할 수 있다.
 
 function debug() {
-// START:debug
   ['Spirited Away', 'Princess Mononoke'].map((film, ...other) => {
     console.log(other);
     console.log(film)
@@ -72,7 +71,6 @@ function debug() {
   });
   // [0, ['Spirited Away', 'Princess Mononoke']]
   // [1, ['Spirited Away', 'Princess Mononoke']]
-// END:debug
 }
 debug()
 //map()은 콜백 함수에서 검사중인 항목을 인수로 받는다.
@@ -100,6 +98,6 @@ console.log(first, remaining);
 //1️⃣언제나 마지막 인수에 사용해야 한다는 것이다.
 //2️⃣나머지 매개변수를 사용할 때는 반드시 함수의 마지막 매개변수여야 한다.
 //3️⃣해체 할당의 경우에도 마지막 값이어야 한다.
-const [...beginning, last] = queue;
-console.log(...beginning, last);
+// const [...beginning, last] = queue;
+// console.log(...beginning, last);
 //  SyntaxError: Rest element must be last element

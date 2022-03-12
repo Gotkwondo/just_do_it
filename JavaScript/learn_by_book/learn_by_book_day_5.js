@@ -165,7 +165,7 @@ if (title === `과장`) {
 }
 //이러한 코드를 작성할 때는 과도한 코드와 잠재적인 유효 범위 총돌까지 고려해야한다.
 //해결책은 삼항 연산자이다. 위의 코드를 삼항 연산자를 이용하여 작성 해보자.
-const permissions = title === `과장` ? [`근로시간`, `수당`] : [`근로시간`];
+const permissions1 = title === `과장` ? [`근로시간`, `수당`] : [`근로시간`];
 //진짜 깔끔한 문장이 되었다.
 //다만 여러개를 연결해서 사용하면 삼항 연산자를 이용하는 이점이 없어진다. 코드가 가독성이 낮아지기 때문이다.
 const permissions2 = title === `과장` || title === `부장` ? title === `과장` ? [`근로시간`, `초과근무승인`, `수당`] : [`근로시간`, `초과근무승인`] : [`근로시간`];
@@ -195,8 +195,8 @@ getIconPath(icon);
 //`https://assets.foo.com/acme/bar.png`;
 //위의 코드는 icon.path를 두번이나 확인하는 것을 확인 가능하다.
 //이를 개선하기 위해 OR연산자를 이용해 보자
-const name = `joe` || `I have no name`;
-name; // `joe`
+const name2 = `joe` || `I have no name`;
+console.log(name); // `joe`
 //OR연산자는 검사한 값 중 하나가 true를 반환하면 검사를 통과한 참 값이 반환됨.
 
 //위의 코드를 OR연산자를 이용해보자
