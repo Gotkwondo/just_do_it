@@ -23,7 +23,7 @@ function App() {
       {/* 기본적으로 name || `표시할 문구`; 의 형식으로 사용하는게 기본, 하지만 유연함을 찾아서 사용할 것*/}
 
       <div style={style}>인라인 스탕일링을 통한 스타일 적용</div>
-      {/* 미리 스타일 객체를 선언 하지 않을려면 style={{backgroundColor:`blakc`}}의 형태로 작성해야 한다 */}
+      {/* 미리 스타일 객체를 선언 하지 않을려면 style={{backgroundColor:`black`}}의 형태로 작성해야 한다 */}
 
       <div className="react">class대신 className을 이용한 css적용</div>
 
