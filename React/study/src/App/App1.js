@@ -38,7 +38,7 @@
     
 //   );
 // }
-import MyComponent from './MyComponent';
+import MyComponent from '../MyComponent';
 
 const App = () => {
   return <div>
