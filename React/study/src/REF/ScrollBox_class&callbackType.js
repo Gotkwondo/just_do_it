@@ -34,3 +34,4 @@ class ScrollBox extends Component{
 }
 
 export default ScrollBox;
+//App4.js와 연결됨

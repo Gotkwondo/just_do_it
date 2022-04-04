@@ -16,7 +16,7 @@ class App extends Component {
 }
 export default App;
 
-//왜 안되는지 모르겠
+//왜 안되는지 모르겠네
 // import React from 'react';
 // import ScrollBox from '../REF/ScrollBox_class&callbackType';
 
