@@ -47,6 +47,7 @@ const EventPractice = () => {
     username: ``,
     message: ``,
   });
+  //useState를 객체 형식으로 변경
   const { username, message } = form;
   const onChange = e => {
     const nextForm = {
