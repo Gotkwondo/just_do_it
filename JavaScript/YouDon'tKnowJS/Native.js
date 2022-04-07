@@ -15,7 +15,7 @@ if (!a) {
 }
 
 const c = Array.apply(null, { length: 3 });
-console.log(c);
+console.log(c); //  [undefined, undefined, undefined]
 
 //Object(), Function(), RegExp()
 const d = new Object();
@@ -70,3 +70,10 @@ aa[mysys] = "foobar";
 console.log(aa);  //  symbol
 
 console.log(Object.getOwnPropertySymbols(aa));  //  [Symbol(my own symbol)]
+
+const cc = Array(3);
+console.log(cc.map((v, i) => i))
+
+Array.isArray(Array.prototype); //  true
+Array.prototype.push(1, 2, 3);
+console.log(Array.prototype); //  [1, 2, 3, constructor: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
