@@ -14,7 +14,8 @@
 //   height: $calculated;
 // }
 
-@import './styles/utils.scss';
+// @import './styles/utils.scss';
+@import 'utils.scss';
 
 .SassComponent{
   display: flex;
