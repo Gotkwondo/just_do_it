@@ -516,14 +516,14 @@ module.exports = function (webpackEnv) {
                   modules: {
                     mode: 'icss',
                   },
-                },//파일을 불러올 때 상대경로 없이 절대 경로를 사용하여 불러올 수 있다.
+                }//파일을 불러올 때 상대경로 없이 절대 경로를 사용하여 불러올 수 있다.
               ).concat({
-                loader: require.resolve("sass-loader"),
+                loader: require.resolve('sass-loader'),
                 options: {
-                  sassOptions: {
-                    includePaths: [path.appSrc + "/styles"],
-                  },
-                },
+                  includePaths: [paths.appSrc + '/styles'],
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  data: `@import 'utils';`
+                }
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
