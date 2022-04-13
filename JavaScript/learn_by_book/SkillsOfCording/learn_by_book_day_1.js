@@ -18,7 +18,7 @@ function alphabetizeTeam(team) {
   return [...team].sort();
 }
 console.log(alphabetizeTeam(teams));
-console.clear();
+// console.clear();
 
 const staff = [{
   name: `Wesley`,
@@ -33,7 +33,7 @@ function getMusicians(staff) {
   return staff.filter(member => member.position === `musician`);
 }
 console.log(getMusicians(staff))
-console.clear();
+// console.clear();
 
 const game1 = {
   player: `jim`,
@@ -79,6 +79,7 @@ console.log(getName(dogPair));
 
 //tip 6
 const sections1 = [`shipping`];
+
 function displayShipping(sections1) {
   if (sections1.indexOf(`shipping`)) {
     return true;
@@ -86,12 +87,14 @@ function displayShipping(sections1) {
   return false;
 }
 console.log(displayShipping(sections1))
+
 //숫자와 비교하는 과정을 거친 코드
 const sections2 = [`contact`, `shipping`];
 function displayShipping2(sections2) {
   return sections2.indexOf(`contact`) > -1;
 }
 console.log(displayShipping2(sections2));
+
 //includes를 사용한 코드
 const sections3 = [`contact`, `shipping`];
 function displayShipping3(sections3) {
