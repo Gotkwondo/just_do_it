@@ -3,12 +3,24 @@ import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 
+function creatBulkTodos() {
+  const array = [];
+  for (let i = 0; i <= 2500; i++){
+    array.push({
+      id: i,
+      text: `할 일 ${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
+
 const App = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(creatBulkTodos);
 
   //고윳값으로 사용될 id
   //ref를 사용하여 변수 담기
-  const nextId = useRef(1);
+  const nextId = useRef(2501);
 
   const onInsert = useCallback(
     text => {
@@ -17,22 +29,22 @@ const App = () => {
         text,
         checked: false,
       };
-      setTodos(todos.concat(todo));
+      setTodos(todos => todos.concat(todo));
       nextId.current += 1;  //  nextId 1씩 더하기
     },
-    [todos],
+    [],
   );
 
   const onRemove = useCallback(
     id => {
-      setTodos(todos.filter(todo => todo.id !== id));
+      setTodos(todos => todos.filter(todo => todo.id !== id));
     },
-    [todos],
+    [],
   );
 
   const onToggle = useCallback(
     id => {
-      setTodos(
+      setTodos(todos => 
         todos.map(todo =>
           todo.id === id ? { ...todo, checked: !todo.checked } : todo,
         ),  //  불병성을 유지하면서 특정 배열 원소를 업데이트 할때 map을 사용해 쉽게 작성이 가능하다.
@@ -40,7 +52,7 @@ const App = () => {
             //  그래서 map을 사용해 만든 배열에서 변화가 필요한 원소만 업데이트 한 후 나머지는 그대로 남는다.
       );
     },
-    [todos],
+    [],
   );
 
   return (
