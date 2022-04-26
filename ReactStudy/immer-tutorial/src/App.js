@@ -14,12 +14,13 @@ const App = () => {
     e => {
       const { name, value } = e.target;
       setForm(
-        produce(form, draft => {
+        //  produce함수 호출 시 첫번째 파라미터가 함수 형태라면 업데이트 함수를 반환하여 깔끔한 코드 작성 가능
+        produce(draft => {
           draft[name] = value;
         })
       );
     },
-    [form]
+    []  //  
   );
 
   //  form 등록을 위한 함수
@@ -34,7 +35,7 @@ const App = () => {
 
       //  array에 새 항목 생성
       setData(
-        produce(data, draft => {
+        produce(draft => {
           draft.array.push(info);
         })
       );
@@ -46,19 +47,19 @@ const App = () => {
       });
       nextId.current += 1;
     },
-    [data, form.name, form.username]
+    [form.name, form.username]
   );
 
   //  항목을 삭제하는 함수
   const onRemove = useCallback(
     id => {
       setData(
-        produce(data, draft => {
+        produce(draft => {
           draft.array.splice(draft.array.findIndex(info => info.id === id), 1);
         })
       );
     },
-    [data]
+    []
   );
 
   return (
