@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">설명</Link>
+        </li>
+      </ul>
+      <hr />
+      {/* 새로운 버전의 react-route에서는 Route는 Routes를 사용해 래핑해야하고 element={<Home />}의 형태로 보여줄 컴포넌트를 설정해주면 된다 */}
+      <Routes>
+        <Route path="/" element={<Home />} exact={true} />
+        <Route path="/about" element={<About/>} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
