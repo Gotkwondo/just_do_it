@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
-import Profile from './Profile';
+import Profiles from './Profiles';
 
 const App = () => {
   return (
@@ -14,10 +14,7 @@ const App = () => {
           <Link to="/about">설명</Link>
         </li>
         <li>
-          <Link to="/profile/juhyeon">주현 프로필</Link>
-        </li>
-        <li>
-          <Link to="/profile/changmin">창민 프로필</Link>
+          <Link to="/profiles">프로필</Link>
         </li>
       </ul>
       <hr />
@@ -30,7 +27,7 @@ const App = () => {
         {/* <Route path="/about" element={<About/>} /> */}
         {["/about", "/info"].map(path => <Route key={path} path={path} element={<About />} />)}
         
-        <Route path="/profile/:username" element={<Profile />} />  {/* /profile/:username 으로 useParams()을 통해 username을 확인 */}
+        <Route path="/profiles/*" element={<Profiles />} />
       </Routes>
     </div>
   );
