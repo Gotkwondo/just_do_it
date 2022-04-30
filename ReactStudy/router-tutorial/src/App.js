@@ -33,6 +33,9 @@ const App = () => {
         
         <Route path="/profiles/*" element={<Profiles />} />
         <Route path="/history" element={<HistorySample />} />
+
+        {/* v6이후 switch가 Routes로 바뀌었다. 존재하지 않는 페이지 주소 입력 시 */}
+        <Route path="/*" element={<h1>존재하지 않는 페이지 입니다.</h1>}/>
       </Routes>
     </div>
   );
