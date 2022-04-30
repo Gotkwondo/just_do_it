@@ -1,5 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import Profile from './Profile';
+// import WithRouterSample from './WithRouterSample';
 
 const Profiles = () => {
   return (
@@ -23,6 +24,7 @@ const Profiles = () => {
         {/* /profiles/:username 으로 useParams()을 통해 username을 확인 */}
         {/* /profiles/는 색략 가능 */}
       </Routes>
+      {/* <WithRouterSample/> */}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import Profiles from './Profiles';
+import HistorySample from './HistorySample';
 
 const App = () => {
   return (
@@ -16,6 +17,9 @@ const App = () => {
         <li>
           <Link to="/profiles">프로필</Link>
         </li>
+        <li>
+          <Link to="/history">History 예제</Link>
+        </li>
       </ul>
       <hr />
       {/* 새로운 버전의 react-route에서는 Route는 Routes를 사용해 래핑해야하고 element={<Home />}의 형태로 보여줄 컴포넌트를 설정해주면 된다 */}
@@ -28,6 +32,7 @@ const App = () => {
         {["/about", "/info"].map(path => <Route key={path} path={path} element={<About />} />)}
         
         <Route path="/profiles/*" element={<Profiles />} />
+        <Route path="/history" element={<HistorySample />} />
       </Routes>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router';
+import WithRouterSample from './WithRouterSample';
 
 const data = {
   juhyeon: {
@@ -23,6 +24,7 @@ const Profile = () => {
         {username}({profile.name})
       </h3>
       <p>{profile.description}</p>
+      <WithRouterSample/>
     </div>
   );
 };
