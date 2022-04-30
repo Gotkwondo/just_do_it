@@ -1,17 +1,31 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import Profile from './Profile';
+import WithRouterSample from './WithRouterSample';
 // import WithRouterSample from './WithRouterSample';
 
 const Profiles = () => {
+  const style = {
+    background: "black",
+    color: "white",
+  }
+
   return (
     <div>
       <h3>사용자 목록</h3>
       <ul>
         <li>
-          <Link to="/profiles/juhyeon">주현</Link>
+          <NavLink
+            to="/profiles/juhyeon"
+            style={({isActive})=>isActive ? style : undefined}
+          >주현</NavLink>
         </li>
         <li>
-          <Link to="/profiles/changmin">창민</Link>
+          <NavLink
+            to="/profiles/changmin"
+            style={({ isActive }) => isActive ? style : undefined}
+            //클래스네임 설정
+            // className={({ isActive }) => 'navlink' + (isActive ? 'activated' : '')}
+          >창민</NavLink>
         </li>
       </ul>
 
