@@ -24,8 +24,9 @@ const NewsList = ({category}) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const query = category === 'all' ? '' : `&category=${category}`;
-        const response = await axios.get(
+        //const query = (category === "") ? "" : `&category=${category}`; 이 코드는 안됨 (""과 undefined는 falsy비교에서 false이다.)
+          const query = (category === undefined) ? "" : `&category=${category}`;
+          const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=c1875192f7424058b26761c4799c6517`,
         );
         setArticles(response.data.articles);
@@ -39,7 +40,7 @@ const NewsList = ({category}) => {
 
   //대기 중일 때
   if (loading) {
-    return <NewsListBlock>대기중...</NewsListBlock>
+    return <NewsListBlock>로딩중...</NewsListBlock>
   }
 
   //아직 articles 값이 설정 안됬을 때
