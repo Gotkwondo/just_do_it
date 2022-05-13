@@ -1,4 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
+import produce from 'immer';
 
 //  액션 타입 정의
 const CHANGE_INPUT = 'todos/CHANGE_INPUT';  //  인풋 값을 변경
@@ -64,22 +65,28 @@ const initialState = {
 
 //handleActions로 작성한 리듀서
 const todos = handleActions(
-  {
-    [CHANGE_INPUT]: (state, action) => ({ ...state, input: action.payload }),
-    [INSERT]: (state, action) => ({
-      ...state,
-      todos: state.todos.concat(action.payload),
-    }),
-    [TOGGLE]: (state, action) => ({
-      ...state,
-      todos: state.todos.map(todo =>
-        todo.id === action.payload ? { ...todo, done: !todo.done } : todo,
-        ),
-    }),
-    [REMOVE]: (state, {payload: id}) => ({  //  객체 비구조화 할당 문법으로 action값을 payload이름을 새로 설정
-      ...state,
-      todos: state.todos.filter(todo => todo.id !== id),
-    }),
+  { //기존 방식에 immer 적용
+    [CHANGE_INPUT]: (state, action) => 
+      produce(state, draft => {
+        draft.input = action.payload;
+      })
+    ,
+    //객체 비구조화 할당 문법으로 코드에 immer적용
+    [INSERT]: (state, { payload: todo }) => 
+      produce(state, draft => {
+        draft.todos.push(todo);
+      })
+    ,
+    [TOGGLE]: (state, { payload: id }) => 
+      produce(state, draft => {
+        const todo = draft.todos.find(todo => todo.it === id);
+        todo.done = !todo.done;
+      }),
+    [REMOVE]: (state, { payload: id }) => 
+      produce(state, draft => {
+        const index = draft.todos.findIndex(todo => todo.id === id);
+        draft.todos.splice(index, 1);
+      }),
   },
   initialState,
 )
