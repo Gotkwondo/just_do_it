@@ -5,10 +5,14 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import rootReducer from './modules';
+// import loggerMiddleware from './lib/loggerMiddleware';
+import { createLogger } from 'redux-logger';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const logger = createLogger();
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  middleware: [logger],
 });
 
 root.render(
