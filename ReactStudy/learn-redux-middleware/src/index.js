@@ -7,12 +7,13 @@ import reportWebVitals from './reportWebVitals';
 import rootReducer from './modules';
 // import loggerMiddleware from './lib/loggerMiddleware';
 import { createLogger } from 'redux-logger';
+import ReduxThunk from 'redux-thunk';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const logger = createLogger();
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [logger],
+  middleware: [logger, ReduxThunk],
 });
 
 root.render(

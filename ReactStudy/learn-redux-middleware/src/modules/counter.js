@@ -5,6 +5,20 @@ const DECREASE = 'counter/DECREASE';
 export const increase = createAction(INCREASE);
 export const decrease = createAction(DECREASE);
 
+//Thunk생성 함수 만들기
+//1초 뒤에 increase 혹은 decrease 함수를 디스패치함
+export const increaseAsync = () => dispatch => {
+  setTimeout(() => {
+    dispatch(increase());
+  }, 1000);
+};
+
+export const decreaseAsync = () => dispatch => {
+  setTimeout(() => {
+    dispatch(decrease());
+  }, 1000);
+};
+
 const initialState = 0; //  상태는 객체일 필요가 없고 숫자로도 동작 가능하다.
 
 const counter = handleActions(
