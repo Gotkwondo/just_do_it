@@ -37,6 +37,7 @@ export const getPost = id => async dispatch => {
 export const getUsers = () => async dispatch => {
   dispatch({ type: GET_USERS }); //  요청을 시작한 것을 알림
   try {
+    const response = await api.getUsers();
     dispatch({
       type: GET_USERS_SUCCESS,
       payload: response.data
@@ -102,7 +103,7 @@ const sample = handleActions(
         ...state.loading,
         GET_USERS: false  //  요청 완료
       },
-      post: action.payload,
+      users: action.payload,
     }),
     [GET_USERS_FAILURE]: (state, action) => ({
       ...state,
