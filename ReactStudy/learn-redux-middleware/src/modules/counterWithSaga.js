@@ -1,6 +1,6 @@
 //  비동기 카운터 만들기
 import { createAction, handleActions } from 'redux-actions';
-import { delay, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { delay, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 
 const INCREASE = 'counter/INCREASE';
 const DECREASE = 'counter/DECREASE';
@@ -19,6 +19,8 @@ export const decreaseAsync = createAction(DECREASE_ASYNC, () => undefined)
 function* increaseSaga() {
   yield delay(1000);      //  1초 기다린다.
   yield put(increase());  //  특정 액션을 디스패치한다.
+  const number = yield select(state => state.counter);  //  select을 이용하여 내부 현제 상태를 조회, state는 스토어 상태를 의미
+  console.log(`현재 값은 ${number}입니다.`)
 };
 
 function* decreaseSaga() {
