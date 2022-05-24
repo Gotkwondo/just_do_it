@@ -66,11 +66,6 @@ module.exports = {
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
-
-  //  CRA가 업데이트 됨에 따라 paths 파일이 변경되었다....
-  //  이것때문에 몇시간을 고민했는지... 한울이형 고마워 ㅠㅠ
-  swSrc: resolveModule(resolveApp, 'src/service-worker'),
-  
   appWebpackCache: resolveApp('node_modules/.cache'),
   appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
   swSrc: resolveModule(resolveApp, 'src/service-worker'),
