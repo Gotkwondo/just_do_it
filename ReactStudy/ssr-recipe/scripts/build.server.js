@@ -8,7 +8,7 @@ process.on('unhandledRejection', err => {
 require('../config/env');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const config = require('../config/webpack.config.server');
+const config = require('../config/webpack.config');
 const paths = require('../config/paths');
 
 function build() {
