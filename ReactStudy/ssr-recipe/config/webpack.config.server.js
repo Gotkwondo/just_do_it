@@ -28,7 +28,7 @@ module.exports = {
   module: {
     rules: [
       {
-        onOf: [
+        oneOf: [
           //  자비스크립트를 위한 처리
           //  기존 webpack.config.js를 참고하여 작성
           {
