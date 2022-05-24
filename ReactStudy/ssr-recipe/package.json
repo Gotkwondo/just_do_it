@@ -9,7 +9,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
-    "awesome-typescript-loader": "^5.2.1",
     "babel": "^6.23.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -69,7 +68,7 @@
   },
   "eslintConfig": {
     "env": {
-      "NODE_ENV": "decelopment"
+      "NODE_ENV": "development"
     },
     "extends": [
       "react-app",
