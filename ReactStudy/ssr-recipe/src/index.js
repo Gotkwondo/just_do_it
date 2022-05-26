@@ -3,12 +3,22 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import rootReducer from './modules';
+
+//  applyMiddleware는 store를 생성할 때 미들웨어를 적용시켜준다.(미들웨어가 여려개인 경우 파라미터로 여러개 전달, 순서대로 지정됨)
+const store = configureStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
