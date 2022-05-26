@@ -1,9 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 //  클라이언트 환경: null
 //  서버 환경: { done: false, promises: [] }
-const PreloadContext = configureStore(null);
+const PreloadContext = createContext(null);
 
 export default PreloadContext;
 
