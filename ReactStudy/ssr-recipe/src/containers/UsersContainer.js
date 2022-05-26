@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Users from '../components/Users';
 import { connect } from 'react-redux';
 import { getUsers } from '../modules/users';
+import { Preloader } from '../lib/PreloadContext';
 
 const UsersContainer = ({ users, getUsers }) => {
   //  컴포넌트가 마운트되고 나서 호출
@@ -9,7 +10,12 @@ const UsersContainer = ({ users, getUsers }) => {
     if (users) return;  //  users가 있다면 요청 안함
     getUsers();
   }, [getUsers, users]);
-  return <Users users={users} />;
+  return (
+    <>
+      <Users users={users} />
+      <Preloader resolve={getUsers} />
+    </>
+  );
 };
 
 export default connect(
