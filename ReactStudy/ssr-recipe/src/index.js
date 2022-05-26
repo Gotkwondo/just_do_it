@@ -12,6 +12,7 @@ import rootReducer from './modules';
 //  applyMiddleware는 store를 생성할 때 미들웨어를 적용시켜준다.(미들웨어가 여려개인 경우 파라미터로 여러개 전달, 순서대로 지정됨)
 const store = configureStore(
   { reducer: rootReducer },
+  window.__PRELOADED_STATE__, //  이 값을 초기 상태로 사용함
   applyMiddleware(thunk)
 );
 

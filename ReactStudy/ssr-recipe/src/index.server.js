@@ -21,7 +21,7 @@ const chunks = Object.keys(manifest.files)
   .map(key => `<script src="${manifest.files[key]}"></script>`) //  스크립트 태그로 변환함
   .join('') //  합침
 
-function createPage(root) {
+function createPage(root, stateScript) {
   return `<!DOCTYPE html>
     <html lang="en">
   <head>
@@ -40,6 +40,7 @@ function createPage(root) {
     <div id="root">
       ${root}
     </div>
+    ${stateScript}
     <script src="${manifest.files['runtime-main.js']}"></script>
     ${chunks}
     <script src="${manifest.files['main.js']}"></script>
@@ -86,7 +87,13 @@ const serverRender = async (req, res, next) => {
   preloadContext.done = true;
 
   const root = ReactDOMServer.renderToString(jsx);  //  레더링을 함
-  res.send(createPage(root)); //  클라이언트에게 결과물 응답
+
+  //  JSON을 문자열로 변환하고 악성 스크립트가 실행되는 것을 방지하기 위해 <를 치환처리
+  //  https://redux.js.org/recipes/server-rendering#security-considerations
+  const stateString = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
+  const stateScript = `<script>__PRELOADED_STATE__=${stateString}</script>`;  //  리덕스 초기 상태를 스크립트로 주입
+
+  res.send(createPage(root, stateScript)); //  클라이언트에게 결과물 응답
 };
 
 const serve = express.static(path.resolve('./build'), {
