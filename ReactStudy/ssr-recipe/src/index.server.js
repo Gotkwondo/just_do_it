@@ -90,7 +90,8 @@ const serverRender = async (req, res, next) => {
 
   //  JSON을 문자열로 변환하고 악성 스크립트가 실행되는 것을 방지하기 위해 <를 치환처리
   //  https://redux.js.org/recipes/server-rendering#security-considerations
-  const stateString = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
+  //  redux 내장 메서드인 getState()로 store에서 현재 상태를 받음
+  const stateString = JSON.stringify(store.getState()).replace(/</g, '\\u003c');  //  replace()는 문자열에서 첫번째 파라미터와 일치하는 부분을 두번째 파라미터로 교체한 문자열을 반환
   const stateScript = `<script>__PRELOADED_STATE__=${stateString}</script>`;  //  리덕스 초기 상태를 스크립트로 주입
 
   res.send(createPage(root, stateScript)); //  클라이언트에게 결과물 응답
