@@ -24,3 +24,11 @@ export const Preloader = ({ resolve }) => {
 //  컴포넌트들이 나타난다.
 
 //  Preloader 컴포넌트는 resolve 함수를 props로 받으며, 컴포넌트가 렌더링될 때 서버 환경에서만 resolve함수를 호출해 준다.
+
+//  Hook 형태로 사용할 수 있는 함수
+export const usePreloader = resolve => {
+  const preloaderContext = useContext(PreloadContext);
+  if (!preloaderContext) return null;
+  if (preloaderContext.done) return null;
+  preloaderContext.promises.push(Promise.resolve(resolve()));
+};
