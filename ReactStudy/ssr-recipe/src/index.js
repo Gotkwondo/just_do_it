@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { applyMiddleware } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -14,9 +13,11 @@ const sagaMiddleware = createSagaMiddleware();
 
 //  applyMiddleware는 store를 생성할 때 미들웨어를 적용시켜준다.(미들웨어가 여려개인 경우 파라미터로 여러개 전달, 순서대로 지정됨)
 const store = configureStore(
-  { reducer: rootReducer },
+  {
+    reducer: rootReducer,
+    middleware: [thunk, sagaMiddleware]
+  },
   window.__PRELOADED_STATE__, //  이 값을 초기 상태로 사용함
-  applyMiddleware(thunk, sagaMiddleware)
 );
 
 sagaMiddleware.run(rootSaga);

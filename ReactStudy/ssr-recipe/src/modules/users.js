@@ -21,9 +21,9 @@ const getUsersFailure = payload => ({
 });
 
 //  특정 유저 정보를 가져오는 액션 생성 함수
-export const GET_USER = id => ({ type: GET_USER, payload: id });
-const GET_USER_SUCCESS = data => ({ type: GET_USER_SUCCESS, payload: data });
-const GET_USER_FAILURE = error => ({
+export const getUser = id => ({ type: GET_USER, payload: id });
+const getUserSuccess = data => ({ type: GET_USER_SUCCESS, payload: data });
+const getUserFailure = error => ({
   type: GET_USER_FAILURE,
   payload: error,
   error: true
@@ -49,9 +49,9 @@ const getUserById = id => axios.get(`https://jsonplaceholder.typicode.com/users/
 function* getUserSaga(action) {
   try {
     const response = yield call(getUserById, action.payload);
-    yield put(getUsersSuccess(response.data));
+    yield put(getUserSuccess(response.data));
   } catch (e) {
-    yield put(getUsersFailure(e));
+    yield put(getUserFailure(e));
   }
 }
 
