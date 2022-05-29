@@ -5,11 +5,12 @@ import App from './App';
 import path from 'path';
 import fs from 'fs';
 import { configureStore } from '@reduxjs/toolkit';
-import { applyMiddleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import rootReducer from './modules';
+import rootReducer, { rootSaga } from './modules';
 import PreloadContext from './lib/PreloadContext';
+import createSagaMiddleware from 'redux-saga';
+import { END } from '@redux-saga/core';
 
 //  asset-mainfest.json 에서 파일 경로들을 조회한다.
 const manifest = JSON.parse(
@@ -55,12 +56,16 @@ const app = express();
 const serverRender = async (req, res, next) => {
   //  이 함수는 404가 떠야 하는 상황에 404를 띄우지 않고 서버 사이드 렌더링을 해줌
   const context = {};
+  const sagaMiddleware = createSagaMiddleware();
 
     //  리덕스를 server에 설정, 요청이 들어올 때마다 새로운 스토어를 만듬
   const store = configureStore(
-    { reducer: rootReducer },
-    applyMiddleware(thunk)
+    {
+      reducer: rootReducer,
+      middleware: [thunk, sagaMiddleware],
+    }
   );
+  const sagaPromise = sagaMiddleware.run(rootSaga).toPromise();
 
   //  PreloadContext를 이용해 프로미스를 수집하고 기다렸다 다시 렌더링하는 작업
   const preloadContext = {
@@ -79,7 +84,9 @@ const serverRender = async (req, res, next) => {
   );
 
   ReactDOMServer.renderToStaticMarkup(jsx); //  renderToStaticMarkup으로 한번 렌더링 한다.
+  store.dispatch(END);  //  redux-saga의 END 액션을 발생시키면 액션을 모니터링하는 사가들이 모두 종료됨
   try {
+    await sagaPromise;  //  기존에 진행 중이던 사가들이 모두 끝날 때까지 기다린다.
     await Promise.all(preloadContext.promises);  //  모든 프로미스를 기다린다.
   } catch (e) {
     return res.status(500);
