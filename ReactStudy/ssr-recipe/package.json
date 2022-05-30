@@ -150,6 +150,9 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "@loadable/babel-plugin"
     ]
   },
   "devDependencies": {

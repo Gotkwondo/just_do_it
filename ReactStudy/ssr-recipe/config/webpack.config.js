@@ -1,4 +1,6 @@
 'use strict';
+//  LoadablePlugin을 불러옴
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const fs = require('fs');
 const path = require('path');
@@ -563,6 +565,8 @@ module.exports = function (webpackEnv) {
       ].filter(Boolean),
     },
     plugins: [
+      //  LoadablePlugin을 플러그 인에 적용
+      new LoadablePlugin(),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
