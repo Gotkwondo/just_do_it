@@ -8,7 +8,7 @@ function solution(N, number) {
             if(i !== 0) e.add(Number(String(N).repeat(i)));
         });
       //  여기서 부터 동적 계획법을 이용하여 연산한다.
-      
+      //  i는 다음 수, j는 1부터 시작해 i-j와 조합되어 N이 사용된 횟수를 나타냄
         for(let i=1; i<useArr.length; i++){
             for(let j=1; j<i; j++){
                 for(let item1 of useArr[j]){
