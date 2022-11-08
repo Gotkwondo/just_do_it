@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';//
+import { Provider } from 'react-redux';//
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import rootReducer, { rootSaga } from './modules';
+import rootReducer, { rootSaga } from './modules';//
 // import loggerMiddleware from './lib/loggerMiddleware';
 import { createLogger } from 'redux-logger';
-import ReduxThunk from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';//
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
