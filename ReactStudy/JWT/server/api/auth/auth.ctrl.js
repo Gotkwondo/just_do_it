@@ -1,3 +1,5 @@
+//  여기서 각 동작을 위한 api 작성
+
 export const register = async ctx => {
   //  회원가입
 }
