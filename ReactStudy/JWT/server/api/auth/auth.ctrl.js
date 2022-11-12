@@ -1,5 +1,6 @@
 import Joi from 'joi';
-import db from '../models/db';
+import db from '../models/db.js';
+import { setPassword } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
 
@@ -27,10 +28,12 @@ export const register = (req, res) => {
       req.status(409); //  Conflict
       return;
     }
-    db.query("INSERT INTO account_info (name) VALUES (username,)")
-    // 여기부터 비밀번호 살정과 db에 저장하는 동작을 만들어주면 된다.
+    const hspw = setPassword(password);
+    // db.query(`INSERT INTO account_info (name,password) VALUES (${username},${hsqw})`)
+    res.send(`${username}`);
+    hspw = "";
   } catch (e) {
-    
+    throw e;  //  에러
   }
 }
 export const login = (req, res) => {

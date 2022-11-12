@@ -1,9 +1,8 @@
 // const express = require('express');
 import express from 'express'
-import * as authCtrl from './auth.ctrl';
-const Router = express.Router();
+import * as authCtrl from './auth.ctrl.js';
 
-const auth = new Router();
+const auth = express.Router();
 
 auth.post('/register', authCtrl.register);
 auth.post('/login', authCtrl.login);

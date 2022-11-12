@@ -1,4 +1,4 @@
-import db from './db';
+import db from './db.js';
 import bcrypt from 'bcrypt';
 
 // const findByUsername = (username) => {
@@ -6,12 +6,12 @@ import bcrypt from 'bcrypt';
 // }
 
 //  비밀번호 생성
-export const setPassword = async (password) => {
-  const hash = await bcrypt.hash(password, 10);
+export const setPassword = (password) => {
+  const hash = bcrypt.hash(password, 10);
   return hash;
 }
 
-export const checkPassword = async (password, hashedPassword) => {
-  const result = await bcrypt.compare(password, hashedPassword);
+export const checkPassword = (password, hashedPassword) => {
+  const result = bcrypt.compare(password, hashedPassword);
   return result;
 }
