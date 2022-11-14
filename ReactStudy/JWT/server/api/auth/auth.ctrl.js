@@ -4,7 +4,7 @@ import { setPassword } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
 
-export const register = (req, res) => {
+export const register = async (req, res) => {
   //  회원가입
   const schema = Joi.object().keys({
     //  객체가 다음 필드를 갖음을 검증
@@ -23,15 +23,16 @@ export const register = (req, res) => {
   const { username, password } = req.body;
   try {
     //  username이 이미 있는지 확인
-    const exist = db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")
-    if (exist) {
-      req.status(409); //  Conflict
-      return;
-    }
-    const hspw = setPassword(password);
+    // const exist = db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")
+    // if (exist) {
+    //   req.status(409); //  Conflict
+    //   return;
+    // }
+    let hspw = await setPassword(password);
     // db.query(`INSERT INTO account_info (name,password) VALUES (${username},${hsqw})`)
-    res.send(`${username}`);
-    hspw = "";
+    console.log(username, hspw);
+    await res.send(`${username}, ${hspw}`)
+    hspw = "deleted";
   } catch (e) {
     throw e;  //  에러
   }

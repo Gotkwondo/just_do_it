@@ -6,12 +6,14 @@ import bcrypt from 'bcrypt';
 // }
 
 //  비밀번호 생성
-export const setPassword = (password) => {
-  const hash = bcrypt.hash(password, 10);
+export const setPassword = async (password) => {
+  const hash = await bcrypt.hash(password, 10);
+    // .then(hash => console.log(hash));
+  // console.log(hash);
   return hash;
 }
 
-export const checkPassword = (password, hashedPassword) => {
-  const result = bcrypt.compare(password, hashedPassword);
+export const checkPassword = async (password, hashedPassword) => {
+  const result = await bcrypt.compare(password, hashedPassword);
   return result;
 }

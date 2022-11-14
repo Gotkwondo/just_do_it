@@ -3,6 +3,6 @@ import auth from './auth/index.js';
 
 const api = express.Router();
 
-api.use('/auth', auth)
+api.use('/auth', auth);
 
 export default api;

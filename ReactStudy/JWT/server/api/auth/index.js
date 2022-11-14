@@ -1,8 +1,8 @@
-// const express = require('express');
 import express from 'express'
 import * as authCtrl from './auth.ctrl.js';
 
 const auth = express.Router();
+auth.use(express.json());
 
 auth.post('/register', authCtrl.register);
 auth.post('/login', authCtrl.login);
