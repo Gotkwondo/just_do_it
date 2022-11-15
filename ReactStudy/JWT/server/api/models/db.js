@@ -9,5 +9,5 @@ const db = mysql.createConnection({
 });
 
 db.connect();
-
+// console.log(db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk"))
 export default db;

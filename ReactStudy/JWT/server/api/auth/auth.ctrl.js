@@ -15,8 +15,8 @@ export const register = async (req, res) => {
   //  validate() 현제 스키마와 옵션을 사용하여 값을 검증한다.
   const result = schema.validate(req.body);
   if (result.error) {
-    req.status = 400;
-    req.body = result.error;
+    res.status(400);
+    res.body = result.error;
     return;
   }
 
@@ -25,12 +25,13 @@ export const register = async (req, res) => {
     //  username이 이미 있는지 확인
     // const exist = db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")
     // if (exist) {
-    //   req.status(409); //  Conflict
+    //   res.status(409); //  Conflict
     //   return;
     // }
     let hspw = await setPassword(password);
-    // db.query(`INSERT INTO account_info (name,password) VALUES (${username},${hsqw})`)
-    console.log(username, hspw);
+    db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
+    //INSERT INTO `join&login_with_jwt`.`account_info` (`name`, `password`) VALUES ('123123', '14131');
+    // console.log(typeof username);
     await res.send(`${username}, ${hspw}`)
     hspw = "deleted";
   } catch (e) {
