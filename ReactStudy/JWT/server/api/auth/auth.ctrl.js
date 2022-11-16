@@ -22,17 +22,44 @@ export const register = async (req, res) => {
 
   const { username, password } = req.body;
   try {
+    let hspw = await setPassword(password);
+
     //  username이 이미 있는지 확인
-    // const exist = db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")
-    // if (exist) {
+    //  db에 같은 이름을 갖은 요청이 들어오면 INSERT하지 않게 끔 함
+    db.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
+      if (err) throw err;
+      else {
+        // console.log(result.length, "dddd")
+        if (result.length === 0) {
+          db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
+          res.send(`${username}님 어서오세요`)
+        }
+        else {
+          res.send("이미 있는 사용자 입니다.")
+        }
+        // console.log(result.length, result)
+      }
+    })
+
+    // const exist = db.query(`SELECT name FROM account_info WHERE name="${username}";`)
+    // if (db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")) {
     //   res.status(409); //  Conflict
     //   return;
     // }
-    let hspw = await setPassword(password);
-    db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
+    // let exist = 0;
+
+    // console.log(exist)
+    // if (exist === 0) {
+    //   db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
+    //   await res.send(`${username}님 어서오세요`)
+    // }
+    // else {
+    //     res.send("이미 있는 사용자 입니다.")
+    // }
     //INSERT INTO `join&login_with_jwt`.`account_info` (`name`, `password`) VALUES ('123123', '14131');
     // console.log(typeof username);
-    await res.send(`${username}, ${hspw}`)
+    
+    // console.log(exist);
     hspw = "deleted";
   } catch (e) {
     throw e;  //  에러
