@@ -1,12 +1,13 @@
 import Joi from 'joi';
 import db from '../models/db.js';
-import { setPassword } from '../models/user.js';
+import { checkExistName, checkPassword, setPassword } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
 
 export const register = async (req, res) => {
   //  회원가입
   const schema = Joi.object().keys({
+
     //  객체가 다음 필드를 갖음을 검증
     username: Joi.string().alphanum().min(3).max(20).required(),
     //  문자열 타입, 알파벳과 0~9의 범위, 최소3 최대 20의 길이, 필수적인
@@ -60,14 +61,44 @@ export const register = async (req, res) => {
     // console.log(typeof username);
     
     // console.log(exist);
-    hspw = "deleted";
   } catch (e) {
     throw e;  //  에러
   }
 }
-export const login = (req, res) => {
+
+export const login = async (req, res) => {
   //  로그인
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.send("유저 비번 없음");  //  Unauthorized
+    return;
+  }
+
+  try {
+    const user = await checkExistName(username);
+    // const test_user = db.query(`SELECT name FROM account_info WHERE name="${username}";`)
+    console.log(user)
+    if (!user) {
+      res.send("db에 유저 없음");
+      return
+    }
+
+    const valid = await checkPassword(username, password);
+    // console.log(valid);
+    if (!valid) {
+      res.send("잘못된 비밀번호입니다.");
+      return
+    }
+    else if (valid) {
+      res.send(`${username}`);
+    }
+  }
+  catch (e) {
+    throw e;
+  }
 }
+
 export const check = (req, res) => {
   //  로그인 상태 확인
 }
