@@ -14,30 +14,19 @@ export const setPassword = async (password) => {
 };
 
 //  **************** 여기부터 문제 발생 ****************
-export const checkPassword = async (username) => {
+export const checkPassword = async (username, password) => {
   
   try {
-    let check_password;
-    db.getConnection(function(err, connect) {
-      if (err) {
-        return err;
-      }
-      else {
-        check_password = connect.query(`SELECT password FROM account_info WHERE name="${username}";`);
-        console.log(check_password);
-        
-      }
-      db.releaseConnection(connect)
-    })
+    const saved_hashed_pw = await db.query(`SELECT password FROM account_info WHERE name="${username}";`);
+    console.log(typeof saved_hashed_pw[0][0].password, typeof password)
+    const result = await bcrypt.compare(password, saved_hashed_pw[0][0].password);
+    return result;
     // const {check_password} = await connectDB.query(`SELECT password FROM account_info WHERE name="${username}";`);
     // console.log(Object.values(check_password).toString());
     // return check_password;
   }
   catch (e) {
     throw e;
-  }
-  finally {
-    connectDB.release();
   }
 
   // db.query(`SELECT password FROM account_info WHERE name="${username}";`,
@@ -92,46 +81,12 @@ export const checkPassword = async (username) => {
 //  **************** 문제 끝 부분 *******************
 
 export const checkExistName = async (username) => {
-  // db.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
-  //   if (err) throw err;
-  //   else {
-  //     // console.log(result, result.length)
-  //     if (result.length === 0) {
-  //       // console.log("없음")
-  //       return false;
-  //     }
-  //     else {
-  //       // console.log("있음")
-  //       return true;
-  //     }
-  //   }
-  // })
+  const isExist_username = await db.query(`SELECT name FROM account_info WHERE name="${username}";`);
 
-
-
-  
-  // const user_exist = db.query(`SELECT name FROM account_info WHERE name="${username}";`);
-  // if (user_exist) {
-  //   return true;
-  // }
-  // else {
-  //   return false;
-  // }
+  if (isExist_username[0].length === 0) {
+    return false;
+  }
+  else {
+    return true;
+  }
 }
-// export const checkExistName = async (username) => {
-
-//   let exist;
-//   db.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
-//     if (err) return err;
-//     if (result) {
-//       exist = true;
-//     }
-//     else {
-//       exist = false;
-//     }
-//     // console.log(Object.values(result[0]).toString());
-//     // console.log(exist)
-//   });
-//   console.log(exist)
-//   return exist;
-// }

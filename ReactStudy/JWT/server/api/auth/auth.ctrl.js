@@ -3,9 +3,8 @@ import db from '../models/db.js';
 import { checkExistName, checkPassword, setPassword } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
-
+//  회원가입(완)
 export const register = async (req, res) => {
-  //  회원가입
   const { username, password } = req.body;  
   const schema = Joi.object().keys({
 
@@ -23,14 +22,14 @@ export const register = async (req, res) => {
   }
 
   try {
-    const isExist_username = await db.query(`SELECT name FROM account_info WHERE name="${username}";`);
+    const exist_username = await checkExistName(username);
     // console.log(isExist_username[0].length)
     // res.send(`${isExist_username[0][0].name}, ${hspw}`)
 
     //  username이 이미 있는지 확인
     //  db에 같은 이름을 갖은 요청이 들어오면 INSERT하지 않게 끔 함
-    if (isExist_username[0].length > 0) {
-      //  isExist_username의 0번 인덱스에는 RowDataPacket이 존재하고 
+    if (exist_username) {
+      //  exist_username의 0번 인덱스에는 RowDataPacket이 존재하고 
       //  이 안에 반환값이 있다면 length는 0 이상인 것을 확인
       res.status(409);
       res.send("already exist username")
@@ -40,6 +39,7 @@ export const register = async (req, res) => {
     else {
       const hspw = await setPassword(password);
       await db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`);
+      // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
       res.send("welcome to join us")
       // console.log("회원가입 완료");
     }
@@ -49,20 +49,21 @@ export const register = async (req, res) => {
 }
 
 // ***************** 에러 고치기 *****************
+//  로그인
 export const login = async (req, res) => {
-  //  로그인
   const { username, password } = req.body;
 
   if (!username || !password) {
-    res.send("유저 비번 없음");  //  Unauthorized
+    res.status(401);
+    res.send("id 혹은 pw 없음");  //  Unauthorized
     return;
   }
 
   try {
-    const user = await checkExistName(username);
+    const exist_username = await checkExistName(username);
     // const test_user = db.query(`SELECT name FROM account_info WHERE name="${username}";`)
-    console.log(user)
-    if (!user) {
+    // console.log(user)
+    if (!exist_username) {
       res.send("db에 유저 없음");
       return
     }
@@ -70,11 +71,13 @@ export const login = async (req, res) => {
     const valid = await checkPassword(username, password);
     console.log(valid, "valid");
     if (!valid) {
+      res.status(401);
       res.send("잘못된 비밀번호입니다.");
       return
     }
     else if (valid) {
       res.send(`${username}`);
+      // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
     }
   }
   catch (e) {
