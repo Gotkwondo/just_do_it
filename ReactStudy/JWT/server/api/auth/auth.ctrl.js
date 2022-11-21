@@ -6,7 +6,7 @@ import { checkExistName, checkPassword, setPassword } from '../models/user.js';
 
 export const register = async (req, res) => {
   //  회원가입
-  
+  const { username, password } = req.body;  
   const schema = Joi.object().keys({
 
     //  객체가 다음 필드를 갖음을 검증
@@ -22,44 +22,33 @@ export const register = async (req, res) => {
     return;
   }
 
-  const { username, password } = req.body;
   try {
-    let hspw = await setPassword(password);
     const isExist_username = await db.query(`SELECT name FROM account_info WHERE name="${username}";`);
-    console.log(isExist_username[0][0].name, hspw)
-    // console.log(hspw)
-    // await db.getConnection(function(err, connect) {
-    //   if (err) {
-    //     return err;
-    //   }
-    //   const isExist_username = connect.query(`SELECT name FROM account_info WHERE name="${username}";`)
-    //   console.log(isExist_username, hspw);
-    //   db.releaseConnection(connect);
-    // });
+    // console.log(isExist_username[0].length)
+    // res.send(`${isExist_username[0][0].name}, ${hspw}`)
+
     //  username이 이미 있는지 확인
     //  db에 같은 이름을 갖은 요청이 들어오면 INSERT하지 않게 끔 함
-    
-    
-    
-    // await connectDB.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
-    //   if (err) throw err;
-    //   else {
-    //     // console.log(result.length, "dddd")
-    //     if (result.length === 0) {
-    //       connectDB.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
-    //       res.send(`${username}님 어서오세요`)
-    //     }
-    //     else {
-    //       res.send("이미 있는 사용자 입니다.")
-    //     }
-    //     // console.log(result.length, result)
-    //   }
-    // })
+    if (isExist_username[0].length > 0) {
+      //  isExist_username의 0번 인덱스에는 RowDataPacket이 존재하고 
+      //  이 안에 반환값이 있다면 length는 0 이상인 것을 확인
+      res.status(409);
+      res.send("already exist username")
+      // console.log("이미 있음")
+      return;
+    }
+    else {
+      const hspw = await setPassword(password);
+      await db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`);
+      res.send("welcome to join us")
+      // console.log("회원가입 완료");
+    }
   } catch (e) {
     throw e  //  에러
   }
 }
 
+// ***************** 에러 고치기 *****************
 export const login = async (req, res) => {
   //  로그인
   const { username, password } = req.body;
@@ -92,6 +81,7 @@ export const login = async (req, res) => {
     throw e;
   }
 }
+// ***************** 에러 고치기 *****************
 
 export const check = (req, res) => {
   //  로그인 상태 확인
