@@ -13,40 +13,82 @@ export const setPassword = async (password) => {
   return hash;
 };
 
-// const querySQL = async (query) => {
-//   // console.log(process.env.DB_HOST);
-//   const connection = await mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'oo991128',
-//   database: 'join&login_with_jwt',
-//   port: 3307
-//   });
-
-//   const ret = await connection.query(query);
-//   return ret;
-// };
-//  사용법 : await querySQL("쿼리문");
-
 //  **************** 여기부터 문제 발생 ****************
-export const checkPassword = async (username, password) => {
+export const checkPassword = async (username) => {
   
-  let hashedPassword = "변경안됨"
-  db.query(`SELECT password FROM account_info WHERE name="${username}";`
-    , async (err, result) => {
+  try {
+    let check_password;
+    db.getConnection(function(err, connect) {
       if (err) {
-        console.log(err);
         return err;
       }
-      if (result) {
-        console.log(Object.values(result[0]).toString());
+      else {
+        check_password = connect.query(`SELECT password FROM account_info WHERE name="${username}";`);
+        console.log(check_password);
+        
       }
-    }
-  );
-  console.log(row);
+      db.releaseConnection(connect)
+    })
+    // const {check_password} = await connectDB.query(`SELECT password FROM account_info WHERE name="${username}";`);
+    // console.log(Object.values(check_password).toString());
+    // return check_password;
+  }
+  catch (e) {
+    throw e;
+  }
+  finally {
+    connectDB.release();
+  }
+
+  // db.query(`SELECT password FROM account_info WHERE name="${username}";`,
+  //     async (err, result) => {
+  //       if (err) {
+  //         throw err;
+  //       }
+  //       // console.log(result[0].password)
+  //       await pushResult(result[0].password);
+  //     }
+  // )
+  // console.log(hashedPassword,"hashedPassword");
+}
+
+  // const test_function = async (callback) => {
+  //   db.query(`SELECT password FROM account_info WHERE name="${username}";`,
+  //     (err, result) => {
+  //       if (err) {
+  //         callback(err);
+  //       }
+  //       callback(result);
+  //     }
+  //   )
+  // }
+  // // test_function((err, result) => {
+  // //   hashedPassword + Object.values(result[0]).toString();
+  // // })
+  // const fun = () => {
+  //   test_function(async (err, result) => {
+  //     return Object.values(result[0]).toString();
+  //   })
+  //   // console.log(string)
+  // }
+  // fun()
+
+  // console.log(hashedPassword);
+  // db.query(`SELECT password FROM account_info WHERE name="${username}";`
+  //   , async (err, result) => {
+  //     if (err) {
+  //       console.log(err);
+  //       return err;
+  //     }
+  //     if (result) {
+  //       console.log(Object.values(result[0]).toString());
+  //     }
+  //   }
+  // );
+  // console.log(row);
   // const result = await bcrypt.compare(password, hashedPassword);
   // return result;
-};
+// };
 //  **************** 문제 끝 부분 *******************
 
 export const checkExistName = async (username) => {
@@ -64,13 +106,17 @@ export const checkExistName = async (username) => {
   //     }
   //   }
   // })
-  const user_exist = db.query(`SELECT name FROM account_info WHERE name="${username}";`);
-  if (user_exist) {
-    return true;
-  }
-  else {
-    return false;
-  }
+
+
+
+  
+  // const user_exist = db.query(`SELECT name FROM account_info WHERE name="${username}";`);
+  // if (user_exist) {
+  //   return true;
+  // }
+  // else {
+  //   return false;
+  // }
 }
 // export const checkExistName = async (username) => {
 

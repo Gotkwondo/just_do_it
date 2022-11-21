@@ -6,6 +6,7 @@ import { checkExistName, checkPassword, setPassword } from '../models/user.js';
 
 export const register = async (req, res) => {
   //  회원가입
+  
   const schema = Joi.object().keys({
 
     //  객체가 다음 필드를 갖음을 검증
@@ -24,45 +25,38 @@ export const register = async (req, res) => {
   const { username, password } = req.body;
   try {
     let hspw = await setPassword(password);
-
+    const isExist_username = await db.query(`SELECT name FROM account_info WHERE name="${username}";`);
+    console.log(isExist_username[0][0].name, hspw)
+    // console.log(hspw)
+    // await db.getConnection(function(err, connect) {
+    //   if (err) {
+    //     return err;
+    //   }
+    //   const isExist_username = connect.query(`SELECT name FROM account_info WHERE name="${username}";`)
+    //   console.log(isExist_username, hspw);
+    //   db.releaseConnection(connect);
+    // });
     //  username이 이미 있는지 확인
     //  db에 같은 이름을 갖은 요청이 들어오면 INSERT하지 않게 끔 함
-    db.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
-      if (err) throw err;
-      else {
-        // console.log(result.length, "dddd")
-        if (result.length === 0) {
-          db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
-          res.send(`${username}님 어서오세요`)
-        }
-        else {
-          res.send("이미 있는 사용자 입니다.")
-        }
-        // console.log(result.length, result)
-      }
-    })
-
-    // const exist = db.query(`SELECT name FROM account_info WHERE name="${username}";`)
-    // if (db.query("SELECT EXISTS(SELECT name FROM account_info) as isChk")) {
-    //   res.status(409); //  Conflict
-    //   return;
-    // }
-    // let exist = 0;
-
-    // console.log(exist)
-    // if (exist === 0) {
-    //   db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
-    //   await res.send(`${username}님 어서오세요`)
-    // }
-    // else {
-    //     res.send("이미 있는 사용자 입니다.")
-    // }
-    //INSERT INTO `join&login_with_jwt`.`account_info` (`name`, `password`) VALUES ('123123', '14131');
-    // console.log(typeof username);
     
-    // console.log(exist);
+    
+    
+    // await connectDB.query(`SELECT name FROM account_info WHERE name="${username}";`, (err, result) => {
+    //   if (err) throw err;
+    //   else {
+    //     // console.log(result.length, "dddd")
+    //     if (result.length === 0) {
+    //       connectDB.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`)
+    //       res.send(`${username}님 어서오세요`)
+    //     }
+    //     else {
+    //       res.send("이미 있는 사용자 입니다.")
+    //     }
+    //     // console.log(result.length, result)
+    //   }
+    // })
   } catch (e) {
-    throw e;  //  에러
+    throw e  //  에러
   }
 }
 
@@ -85,7 +79,7 @@ export const login = async (req, res) => {
     }
 
     const valid = await checkPassword(username, password);
-    // console.log(valid);
+    console.log(valid, "valid");
     if (!valid) {
       res.send("잘못된 비밀번호입니다.");
       return
