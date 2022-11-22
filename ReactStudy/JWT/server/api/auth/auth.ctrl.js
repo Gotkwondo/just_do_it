@@ -48,7 +48,6 @@ export const register = async (req, res) => {
   }
 }
 
-// ***************** 에러 고치기 *****************
 //  로그인
 export const login = async (req, res) => {
   const { username, password } = req.body;
@@ -84,7 +83,6 @@ export const login = async (req, res) => {
     throw e;
   }
 }
-// ***************** 에러 고치기 *****************
 
 export const check = (req, res) => {
   //  로그인 상태 확인
