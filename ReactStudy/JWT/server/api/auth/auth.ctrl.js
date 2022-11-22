@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import db from '../models/db.js';
-import { checkExistName, checkPassword, setPassword } from '../models/user.js';
+import { checkExistName, checkPassword, setPassword, generateToken } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
 //  회원가입(완)
@@ -40,8 +40,12 @@ export const register = async (req, res) => {
       const hspw = await setPassword(password);
       await db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`);
       // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
+      const token = generateToken(username, password);
+      res.cookie('access_token', token, {
+        maxAge: 1000 * 60 * 60 * 24 * 7, //  7일
+        httpOnly: true,
+      });
       res.send("welcome to join us")
-      // console.log("회원가입 완료");
     }
   } catch (e) {
     throw e  //  에러
@@ -75,8 +79,13 @@ export const login = async (req, res) => {
       return
     }
     else if (valid) {
-      res.send(`${username}`);
       // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
+      const token = generateToken(username, password);
+      res.cookie('access_token', token, {
+        maxAge: 1000 * 60 * 60 * 24 * 7, //  7일
+        httpOnly: true,
+      });
+      res.send(`${username}`);
     }
   }
   catch (e) {

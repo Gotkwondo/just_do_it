@@ -1,5 +1,6 @@
 import db from './db.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 //  비밀번호 생성
 export const setPassword = async (password) => {
@@ -32,4 +33,19 @@ export const checkExistName = async (username) => {
   else {
     return true;
   }
+}
+
+export const generateToken = (username, password) => {
+  const token = jwt.sign(
+    //  첫번째 파라미터는 토큰 안에 넣고싶은 데이터를 넣는다.
+    {
+      username: username,
+      password: password
+    },
+    process.env.JWT_SECRET, //  두 번째 파라미터에는 JWT 암호를 넣는다.
+    {
+      expiresIn: '7d' //  유효기간을 정함 (7일)
+    },
+  );
+  return token;
 }
