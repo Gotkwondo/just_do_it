@@ -43,7 +43,7 @@ export const serialize = async (username) => {
       username: username
     }
   );
-  console.log(data);
+  console.log(data, "user");
   return data;
 }
 

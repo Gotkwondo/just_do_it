@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import api from './api/index.js';
-import jwtMiddlware from './api/lib/jwtMiddleware.js';
+// import jwtMiddlware from './api/lib/jwtMiddleware.js';
 
 const app = express();
 const port = 4000;
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 )
 
 app.use(cors());
-app.use(jwtMiddlware);
+// app.use(jwtMiddlware);
 
 app.listen(port, () => {
   console.log(`listening on 4000`);

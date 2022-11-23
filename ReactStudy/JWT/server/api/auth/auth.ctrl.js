@@ -97,17 +97,17 @@ export const login = async (req, res) => {
 
   //  로그인 상태 확인
 export const check = async (req, res) => {
-  // const user = req.user;
-  console.log(req.user, "user업슴")
+  const user = res.locals.user;
+  // console.log(user, "user업슴")
   // res.send(`${req.body}`)
-  // if (!user) {
-  //   res.status(401);
-  //   return;
-  // }
-  // else {
-  //   res.send("ehla");
-  //   console.log(user, '1');
-  // }
+  if (!user) {
+    res.status(401);
+    return;
+  }
+  else {
+    res.send(user);
+    // console.log(user, '1');
+  }
 }
 export const logout = (req, res) => {
   //  로그아웃
