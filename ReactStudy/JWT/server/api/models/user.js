@@ -15,7 +15,7 @@ export const checkPassword = async (username, password) => {
   
   try {
     const saved_hashed_pw = await db.query(`SELECT password FROM account_info WHERE name="${username}";`);
-    console.log(typeof saved_hashed_pw[0][0].password, typeof password)
+    // console.log(typeof saved_hashed_pw[0][0].password, typeof password)
     const result = await bcrypt.compare(password, saved_hashed_pw[0][0].password);
     return result;
   }
@@ -33,6 +33,18 @@ export const checkExistName = async (username) => {
   else {
     return true;
   }
+}
+
+export const serialize = async (username) => {
+  const hspw = await db.query(`SELECT password FROM account_info WHERE name="${username}";`);
+  const data = JSON.stringify(
+    {
+      _id: hspw[0][0].password,
+      username: username
+    }
+  );
+  console.log(data);
+  return data;
 }
 
 export const generateToken = (username, password) => {

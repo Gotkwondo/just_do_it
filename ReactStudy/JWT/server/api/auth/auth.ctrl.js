@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import db from '../models/db.js';
-import { checkExistName, checkPassword, setPassword, generateToken } from '../models/user.js';
+import { checkExistName, checkPassword, setPassword, generateToken, serialize } from '../models/user.js';
 
 //  여기서 각 동작을 위한 api 작성
 //  회원가입(완)
@@ -41,11 +41,12 @@ export const register = async (req, res) => {
       await db.query(`INSERT INTO account_info (name,password) VALUES ("${username}","${hspw}");`);
       // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
       const token = generateToken(username, password);
+      const user_data = await serialize(username);
       res.cookie('access_token', token, {
         maxAge: 1000 * 60 * 60 * 24 * 7, //  7일
         httpOnly: true,
       });
-      res.send("welcome to join us")
+      res.send(user_data)
     }
   } catch (e) {
     throw e  //  에러
@@ -72,20 +73,21 @@ export const login = async (req, res) => {
     }
 
     const valid = await checkPassword(username, password);
-    console.log(valid, "valid");
+    // console.log(valid, "valid");
     if (!valid) {
       res.status(401);
       res.send("잘못된 비밀번호입니다.");
       return
     }
     else if (valid) {
-      // res.body()  // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
+      // res.body()  
+      // 토큰 발급 및 검증에서 username과 _id(hashedpw)를 JSON형식의 객체로 보내주기
       const token = generateToken(username, password);
       res.cookie('access_token', token, {
         maxAge: 1000 * 60 * 60 * 24 * 7, //  7일
         httpOnly: true,
       });
-      res.send(`${username}`);
+      res.send(`${serialize(username)}`);
     }
   }
   catch (e) {
@@ -93,8 +95,19 @@ export const login = async (req, res) => {
   }
 }
 
-export const check = (req, res) => {
   //  로그인 상태 확인
+export const check = async (req, res) => {
+  // const user = req.user;
+  console.log(req.user, "user업슴")
+  // res.send(`${req.body}`)
+  // if (!user) {
+  //   res.status(401);
+  //   return;
+  // }
+  // else {
+  //   res.send("ehla");
+  //   console.log(user, '1');
+  // }
 }
 export const logout = (req, res) => {
   //  로그아웃
