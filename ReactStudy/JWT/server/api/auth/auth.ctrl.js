@@ -109,6 +109,11 @@ export const check = async (req, res) => {
     // console.log(user, '1');
   }
 }
+
+//  로그아웃
 export const logout = (req, res) => {
-  //  로그아웃
+  //  쿠키삭제
+  res.clearCookie('access_token');
+  console.log("쿠키 삭제됨")
+  res.send("쿠키 삭제?")
 }
