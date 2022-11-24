@@ -31,7 +31,7 @@ export const checkExistName = async (username) => {
     return false;
   }
   else {
-    return true;
+    return isExist_username[0][0].name;
   }
 }
 
