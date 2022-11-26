@@ -10,7 +10,6 @@ export const setPassword = async (password) => {
   return hash;
 };
 
-//  **************** 여기부터 문제 발생 ****************
 export const checkPassword = async (username, password) => {
   
   try {
