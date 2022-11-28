@@ -1,4 +1,4 @@
-import StyledButton from '../components/StyledButton.js';
+import StyledButton from '../components/common/StyledButton.js';
 
 const LoginPage = () => {
   return (
