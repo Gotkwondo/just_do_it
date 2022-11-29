@@ -2,7 +2,7 @@ import '../../styles/component/common/button.scss';
 
 const StyledButton = ({props}) => {
   return (
-    <button className='styledButton'>{props}</button>
+    <button className={['styledButton', 'cyan', 'fullwidth'].join(' ')}>{props}</button>
   )
 };
 

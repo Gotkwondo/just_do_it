@@ -1,0 +1,39 @@
+@import '../../lib/palette.scss';
+
+.authFormBlock{
+  h3{
+    margin: 0;
+    color: $grey_8;
+    margin-bottom: 1rem;
+  };
+};
+
+.styledInput{
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid $grey_5;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0.5rem;
+  outline: none;
+  width: 100%;
+  &:focus{
+    color: $cyan_7;
+    border-bottom: 1px solid $grey_7
+  }
+  & + &{
+    margin-top: 1rem;
+  }
+}
+
+.footer{
+  margin-top: 2rem;
+  text-align: right;
+  a{
+    color: $grey_6;
+    text-decoration: underline;
+    &:hover{
+      color: $grey_9;
+    }
+  }
+}
