@@ -1,4 +1,4 @@
-import '../styles/button.scss';
+import '../../styles/component/common/button.scss';
 
 const StyledButton = ({props}) => {
   return (
