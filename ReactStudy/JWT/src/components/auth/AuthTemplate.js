@@ -9,3 +9,5 @@ const AuthTemplate = () => {
     </div>
   )
 }
+
+export default AuthTemplate;
