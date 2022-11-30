@@ -10,23 +10,23 @@ const textMap = {
 
 // 회원가입 또는 로그인 폼을 보여준다.
 
-const AuthForm = ({ type }) => {
+const AuthForm = ({ type, form, onChange, onSubmit }) => {
   const text = textMap[type];
   return (
     <div className='authFormBlock'>
       <h3>{type}</h3>
-      <form>
-        <input className="styledInput" autoComplete='username' name='username' placeholder='아이디' />
-        <input className="styledInput" autoComplete='new-password' name='password' placeholder='비밀번호' type='password' />
+      <form onSubmit={onSubmit}>
+        <input className="styledInput" autoComplete='username' name='username' placeholder='아이디' onChange={onChange} value={form.username}/>
+        <input className="styledInput" autoComplete='new-password' name='password' placeholder='비밀번호' type='password' onChange={onChange} value={form.password}/>
         {type === 'register' && (
-          <input className="styledInput" autoComplete='new-password' name='passwordConfirm' placeholder='비밀번호 확인' type='password' />
+          <input className="styledInput" autoComplete='new-password' name='passwordConfirm' placeholder='비밀번호 확인' type='password' onChange={onChange} value={form.passwordConfirm}/>
         )}
         <StyledButton props={text} />
       </form>
       <div className='footer'>
         {type === 'login' ? 
-          <Link to='/login'>로그인</Link> :
-          <Link to='/register'>회원가입</Link>
+          <Link to='/register'>회원가입</Link> :
+          <Link to='/login'>로그인</Link>
         }
       </div>
     </div>

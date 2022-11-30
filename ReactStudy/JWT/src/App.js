@@ -9,7 +9,7 @@ function App() {
     <>
       <Routes>
         {/* <Route path='/@:username' element={<LoginPage />} /> */}
-        {['/@:username', '/'].map(path => <Route key={path} path={path} element={<LoginPage />} />)}
+        {['/@:username', '/', '/login'].map(path => <Route key={path} path={path} element={<LoginPage />} />)}
         <Route path='/register' element={<RegisterPage />} />
 
       </Routes>

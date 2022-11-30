@@ -1,12 +1,12 @@
 import AuthTemplate from '../components/auth/AuthTemplate.js';
-import AuthForm from '../components/auth/AuthForm.js'
-import StyledButton from '../components/common/StyledButton.js';
+// import AuthForm from '../components/auth/AuthForm.js';
+import LoginForm from '../containers/auth/LoginForm.js';
 
 const LoginPage = () => {
   return (
     <div>
       <AuthTemplate>
-        <AuthForm type={'login'}/>
+        <LoginForm />
       </AuthTemplate>
     </div>
   );
