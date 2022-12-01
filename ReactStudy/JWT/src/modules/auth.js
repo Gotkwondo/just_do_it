@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import createRequestSaga, { createRequestActionTypes } from '../lib/createRequestSaga';
 import { takeLatest } from '@redux-saga/core/effects';
+import * as authAPI from '../lib/api/auth'
 
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
@@ -22,11 +23,13 @@ export const changeField = createAction(
   ({ form, key, value }) => ({
     form, //  register, login
     key,  //  username, password, passwordConfirm
-    value,//  실제 바꾸려는 값
-  }),
+    value //  실제 바꾸려는 값
+  })
 );
 export const initializeForm = createAction(
-  INITIALIZE_FORM, form => form
+  INITIALIZE_FORM, form => {
+    return form
+  }
 );  //  register/login
 
 export const register = createAction(REGISTER, ({ username, password }) => ({
@@ -65,6 +68,7 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, draft => {
+        console.log(draft, auth)
         draft[form][key] = value; //  ex: state.register.username을 바꿈
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({

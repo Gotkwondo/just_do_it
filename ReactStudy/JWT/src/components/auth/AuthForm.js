@@ -16,8 +16,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
     <div className='authFormBlock'>
       <h3>{type}</h3>
       <form onSubmit={onSubmit}>
-        <input className="styledInput" autoComplete='username' name='username' placeholder='아이디' onChange={onChange} value={form.username}/>
-        <input className="styledInput" autoComplete='new-password' name='password' placeholder='비밀번호' type='password' onChange={onChange} value={form.password}/>
+        <input className="styledInput" autoComplete='username' name='username' placeholder='아이디' onChange={onChange} />
+        <input className="styledInput" autoComplete='new-password' name='password' placeholder='비밀번호' type='password' onChange={onChange} />
         {type === 'register' && (
           <input className="styledInput" autoComplete='new-password' name='passwordConfirm' placeholder='비밀번호 확인' type='password' onChange={onChange} value={form.passwordConfirm}/>
         )}
