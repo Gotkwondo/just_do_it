@@ -1,5 +1,4 @@
-import { createAction } from '@reduxjs/toolkit';
-import { handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 
 
 const START_LOADING = 'loading/START_LOADING';
@@ -9,12 +8,18 @@ const FINISH_LOADING = 'loading/FINISH_LOADING';
 
 export const startLoading = createAction(
   START_LOADING,
-  requestType => requestType,
+  requestType => {
+    console.log(requestType, '로딩 시작');
+    return requestType;
+  },
 );
 
 export const finishLoading = createAction(
   FINISH_LOADING,
-  requestType => requestType,
+  requestType => {
+    console.log(requestType, '로딩 끝');
+    return requestType;
+  },
 );
 
 const initialState = {};

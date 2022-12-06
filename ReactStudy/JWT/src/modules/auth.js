@@ -7,13 +7,6 @@ import * as authAPI from '../lib/api/auth'
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
-// const REGISTER = 'auth/REGISTER';
-// const REGISTER_SUCCESS = 'auth/REGISTER_SUCCESS';
-// const REGISTER_FAILURE = 'auth/REGISTER_FAILURE';
-
-// const LOGIN = 'auth/LOGIN';
-// const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
-// const LOGIN_FAILURE = 'auth/LOGIN_FAILURE';
 //아래와 같이 외부에서 함수를 만들어 사용하면 코드 중복을 줄일 수 있다.
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes('auth/REGISTER');
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('auth/LOGIN');
@@ -54,7 +47,7 @@ const initialState = {
   register: {
     username: '',
     password: '',
-    passwordform: '',
+    passwordConfirm: '',
   },
   login: {
     username: '',
@@ -68,7 +61,6 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, draft => {
-        console.log(draft, auth)
         draft[form][key] = value; //  ex: state.register.username을 바꿈
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
