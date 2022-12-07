@@ -8,9 +8,8 @@ const textMap = {
   register: '회원가입',
 };
 
-// 회원가입 또는 로그인 폼을 보여준다.
-
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+//  회원가입 또는 로그인 폼을 보여준다.
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <div className='authFormBlock'>
@@ -21,6 +20,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
         {type === 'register' && (
           <input className="styledInput" autoComplete='new-password' name='passwordConfirm' placeholder='비밀번호 확인' type='password' onChange={onChange} value={form.passwordConfirm}/>
         )}
+        {error && <div className='errorMessage'>에러발생!</div>}
         <StyledButton props={text} />
       </form>
       <div className='footer'>
