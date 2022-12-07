@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import AuthForm from '../../components/auth/AuthForm';
 import { changeField, initializeForm } from '../../modules/auth';
+// import { withRouter } from 'react-router-dom'; 이건 더 이상 사용하지 않는다...
+//  v6 부터는 useParams, useLocation, useNavigate를 컴포넌트 내부에 변수 선언 형식을 사용해 각각 객체를 접근해야한다.
+import { useParams, useLocation, useNavigation } from "react-router-dom";
 
 
 const LoginForm = () => {
