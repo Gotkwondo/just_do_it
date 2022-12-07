@@ -61,8 +61,6 @@ const RegisterForm = () => {
   useEffect(() => {
     if (user) {
       navigate('/');
-      console.log('check API 성공');
-      console.log(user);
     }
   }, [navigate, user]);
 
