@@ -7,12 +7,12 @@ const Header = () => {
   return (
     <>
       <div className='headerBlock'>
-        <Responsive addition_className='wrapper'>
+        <Responsive addition_className={'wrapper'} >
           <Link to='/' className='logo'>
             REACTERS
           </Link>
           <div className='right'>
-            <StyledButton to='/login'/>
+            <StyledButton to='/login' text='로그인'/>
           </div>
         </Responsive>
       </div>

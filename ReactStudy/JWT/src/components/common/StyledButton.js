@@ -3,8 +3,10 @@ import '../../styles/component/common/button.scss';
 
 const StyledButton = ({ text, to, ...rest }) => {
   const navigate = useNavigate()
+  console.log(to)
 
   const onClick = (e) => {
+    console.log(to)
     if (to) {
       navigate(to);
     }
@@ -13,9 +15,8 @@ const StyledButton = ({ text, to, ...rest }) => {
     }
   }
 
-  return to ? (
-    <Link className='styledButtonLink' />
-  ) : ( <button className={['styledButtonLink', 'cyan', 'fullwidth'].join(' ')} {...rest} onClick={onClick}>{text}</button>
+  return (
+    <button className={['styledButtonLink', 'cyan', 'fullwidth'].join(' ')} onClick={onClick} {...rest} >{text}</button>
   )
 };
 
