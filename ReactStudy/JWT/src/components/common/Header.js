@@ -3,7 +3,7 @@ import StyledButton from './StyledButton';
 import '../../styles/component/common/header.scss'
 import { Link } from 'react-router-dom';
 
-const Header = ({ user }) => {
+const Header = ({ user, onLogout }) => {
   return (
     <>
       <div className='headerBlock'>
@@ -14,7 +14,7 @@ const Header = ({ user }) => {
           {user ?
             <div className='right'>
               <div className='userInfo'>{user.username}</div>
-              <StyledButton text='로그아웃' />
+              <StyledButton text='로그아웃' onClick={onLogout}/>
             </div>
             :
             <div className='right'>
