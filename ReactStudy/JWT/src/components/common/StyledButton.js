@@ -16,7 +16,7 @@ const StyledButton = ({ text, to, ...rest }) => {
   }
 
   return (
-    <button className={['styledButtonLink', 'cyan', 'fullwidth'].join(' ')} onClick={onClick} {...rest} >{text}</button>
+    <button className={['styledButtonLink', `${rest.color}`, `${rest.width}`].join(' ')} onClick={onClick} {...rest} >{text}</button>
   )
 };
 

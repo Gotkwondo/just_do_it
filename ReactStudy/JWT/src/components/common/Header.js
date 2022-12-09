@@ -3,7 +3,7 @@ import StyledButton from './StyledButton';
 import '../../styles/component/common/header.scss'
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <>
       <div className='headerBlock'>
@@ -11,14 +11,21 @@ const Header = () => {
           <Link to='/' className='logo'>
             REACTERS
           </Link>
-          <div className='right'>
-            <StyledButton to='/login' text='로그인'/>
-          </div>
+          {user ?
+            <div className='right'>
+              <div className='userInfo'>{user.username}</div>
+              <StyledButton text='로그아웃' />
+            </div>
+            :
+            <div className='right'>
+              <StyledButton to='/login' text='로그인' />
+            </div>
+          }
         </Responsive>
       </div>
-      <div className='spacer'/>
+      <div className='spacer' />
     </>
   )
-}
+};
 
 export default Header;

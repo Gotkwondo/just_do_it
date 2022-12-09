@@ -1,11 +1,11 @@
 import AuthTemplate from '../components/auth/AuthTemplate.js';
-import Header from '../components/common/Header.js';
 import LoginForm from '../containers/auth/LoginForm.js';
+import HeaderContainer from '../containers/common/HeaderContainer.js';
 
 const LoginPage = () => {
   return (
     <div>
-      <Header />
+      <HeaderContainer />
       <AuthTemplate>
         <LoginForm />
       </AuthTemplate>
