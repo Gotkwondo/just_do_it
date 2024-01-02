@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Task from '../src/components/Task';
+import Task from './Task';
 
 export default {
   component: Task,
@@ -15,13 +15,13 @@ Default.args = {
     id: '1',
     title: 'Test Task',
     state: 'TASK_INBOX',
-    updatedAt: new Date(2023, 1, 2)
+    updatedAt: new Date(2021, 0, 1, 9, 0)
   },
 };
 
 export const Pinned = Template.bind({});
 Pinned.args = {
-  tast: {
+  task: {
     ...Default.args.task,
     state: 'TASK_PINNED'
   },
@@ -29,7 +29,7 @@ Pinned.args = {
 
 export const Archived = Template.bind({});
 Archived.args = {
-  tast: {
+  task: {
     ...Default.args.task,
     state: 'TASK_Archived'
   },
